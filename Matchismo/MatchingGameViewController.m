@@ -6,10 +6,10 @@
 //  Copyright © 2019 Yekaterina Podiatchev. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "MatchingGameViewController.h"
 #import "HistoryViewController.h"
 
-@interface ViewController ()
+@interface MatchingGameViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *scoreLable;
 
@@ -19,7 +19,7 @@
 
 @end
 
-@implementation ViewController
+@implementation MatchingGameViewController
 
 - (void) prepareForSegue: (UIStoryboardSegue *) segue sender: (id) sender {
   if ( [segue.identifier isEqualToString:@"showHistory"] ) {

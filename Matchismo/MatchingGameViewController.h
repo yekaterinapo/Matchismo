@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MatchingGame.h"
 
-@interface ViewController : UIViewController
+@interface MatchingGameViewController : UIViewController
 
 - (void) updateUI;
 

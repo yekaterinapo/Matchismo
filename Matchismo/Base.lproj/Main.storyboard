@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="els-9h-1y1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bXf-EO-MWy">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -387,7 +387,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2256.8000000000002" y="279.31034482758622"/>
+            <point key="canvasLocation" x="2228" y="279"/>
         </scene>
         <!--Set Game-->
         <scene sceneID="Fj0-c2-vFc">
@@ -868,12 +868,52 @@
             </objects>
             <point key="canvasLocation" x="1317.5999999999999" y="279.31034482758622"/>
         </scene>
+        <!--Matching Game-->
+        <scene sceneID="nSz-7K-W9f">
+            <objects>
+                <viewController id="bXf-EO-MWy" customClass="ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Fja-c9-Gqd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sam-bT-AYh" customClass="PlayingCardView">
+                                <rect key="frame" x="101" y="207" width="173" height="252"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="dFZ-ah-Oy3" appends="YES" id="ORQ-9U-PZF"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.56031829119999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="jGe-sb-pB2"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Matching Game" id="Ep1-GN-ioQ">
+                        <barButtonItem key="rightBarButtonItem" title="history" id="J4G-Mn-XS7"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="playingCardView" destination="Sam-bT-AYh" id="DCE-6r-Tas"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JKT-pq-8ed" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="bED-Lm-lyv"/>
+                <swipeGestureRecognizer direction="right" id="DLk-aL-yhP"/>
+                <swipeGestureRecognizer direction="right" id="uB5-C5-5l6"/>
+                <swipeGestureRecognizer direction="right" id="dFZ-ah-Oy3">
+                    <connections>
+                        <action selector="swipe:" destination="bXf-EO-MWy" id="age-Mk-EHu"/>
+                    </connections>
+                </swipeGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="2228" y="1047.5262368815593"/>
+        </scene>
     </scenes>
     <resources>
         <image name="cardback" width="64" height="96"/>
         <image name="cardfront" width="64" height="96"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="luf-Fx-TcS"/>
+        <segue reference="DHl-yK-xo8"/>
     </inferredMetricsTieBreakers>
 </document>
