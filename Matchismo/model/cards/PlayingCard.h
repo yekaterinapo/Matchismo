@@ -12,11 +12,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PlayingCard : Card
 
-@property(nonatomic) NSUInteger rank;
-@property(strong, nonatomic) NSString* suit;
 + (NSUInteger) maxRank;
+
 + (NSArray *) SuitStrings;
--(int)Matched:(NSArray*)otherCards;
+
+- (int) MatcheScore: (NSArray*) otherCards;
+
+@property (nonatomic) NSUInteger rank;
+
+@property (strong, nonatomic) NSString* suit;
 
 @end
 
