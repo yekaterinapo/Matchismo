@@ -29,7 +29,7 @@
 
 - (MatchingGame*) game {
   if (!_game) {
-    _game = [[setGame alloc] initWithCardCount:[self.cardsButtons count] UsingDeck:[self createDeck]];
+    _game = [[setGame alloc] initWithCardCount:CARDS_IN_GAME UsingDeck:[self createDeck]];
   }
   return _game;
 }
@@ -50,12 +50,12 @@
 - (void) updateUI {
   [super updateUI];
   // hilight selected buttons
-  for (UIButton* cardButton in self.cardsButtons) {
-    // get the index of the button
-    NSUInteger cardIndex = [self.cardsButtons indexOfObject:cardButton];
-    Card *card = [self.game getCardAtIndex:cardIndex];
-    [cardButton.layer setBorderWidth:(card.chosen)?3.0:0];
-  }
+//  for (UIButton* cardButton in self.cardsButtons) {
+//    // get the index of the button
+//    NSUInteger cardIndex = [self.cardsButtons indexOfObject:cardButton];
+//    Card *card = [self.game getCardAtIndex:cardIndex];
+//    [cardButton.layer setBorderWidth:(card.chosen)?3.0:0];
+//  }
 }
 
 @end

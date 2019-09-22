@@ -84,25 +84,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Matchismo/ViewController.m"
-            timestampString = "590825245.79934"
+            timestampString = "590860362.727272"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Matchismo/ViewController.m"
-            timestampString = "590825245.7993881"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51">
+            startingLineNumber = "58"
+            endingLineNumber = "58">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -143,46 +129,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Matchismo/SetViewController.m"
-            timestampString = "590569942.9180321"
+            filePath = "Matchismo/ViewController.m"
+            timestampString = "590860362.727711"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "-updateUI"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[SetViewController updateUI]"
-                  moduleName = "Matchismo"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yekaterina/Developer/Matchismo/Matchismo/SetViewController.m"
-                  timestampString = "590481473.2812361"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "77"
-                  endingLineNumber = "77"
-                  offsetFromSymbolStart = "719">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[SetViewController updateUI]"
-                  moduleName = "Matchismo"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yekaterina/Developer/Matchismo/Matchismo/SetViewController.m"
-                  timestampString = "590481473.282397"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "77"
-                  endingLineNumber = "77"
-                  offsetFromSymbolStart = "734">
-               </Location>
-            </Locations>
+            endingLineNumber = "58">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -192,37 +144,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Matchismo/SetViewController.m"
-            timestampString = "590569942.918151"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "-updateUI"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Matchismo/ViewController.m"
-            timestampString = "590825245.799459"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Matchismo/SetViewController.m"
-            timestampString = "590569942.918213"
+            timestampString = "590860362.727775"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "32"
@@ -238,7 +160,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Matchismo/SetViewController.m"
-            timestampString = "590569942.91824"
+            timestampString = "590860362.727823"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "27"
@@ -398,11 +320,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Matchismo/views/BasicShapeView.m"
-            timestampString = "590841031.131776"
+            timestampString = "590860362.728109"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
             landmarkName = "-outlineOfDiamond"
             landmarkType = "7">
          </BreakpointContent>
@@ -414,12 +336,60 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Matchismo/views/BasicShapeView.m"
-            timestampString = "590841031.132197"
+            timestampString = "590860362.728518"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "-outlineOfOVal"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Matchismo/MatchingGameViewController.m"
+            timestampString = "590860362.728581"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Matchismo/MatchingGameViewController.m"
+            timestampString = "590860362.728955"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "-startNewGame"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Matchismo/MatchingGameViewController.m"
+            timestampString = "590860362.729144"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "-startNewGame"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -1,5 +1,5 @@
 //
-//  PlayingCardView.m
+//  SetCardView.m
 //  SuperCard
 //
 //  Created by CS193p Instructor.
@@ -208,6 +208,10 @@
   self = [super initWithFrame:frame];
   [self setup];
   return self;
+}
+
++ (NSArray *) ShapeBoarderThiknesses {
+  return @[@-0, @3, @10];
 }
 
 @end

@@ -7,6 +7,8 @@
 //
 
 #import "PlayingCardViewController.h"
+#import "views/PlayingCardView.h"
+#import "model/cards/PlayingCard.h"
 
 @interface PlayingCardViewController ()
 
@@ -18,13 +20,25 @@
 
 - (MatchingGame*) game {
   if (!_game) {
-    _game = [[PlayingCardMatchingGame alloc] initWithCardCount:[self.cardsButtons count] UsingDeck:[self createDeck]];
+    _game = [[PlayingCardMatchingGame alloc] initWithCardCount:CARDS_IN_GAME UsingDeck:[self createDeck]];
   }
   return _game;
 }
 
 - (Deck*) createDeck {
   return [[PlayDeck alloc] init];
+}
+
+- (UIView*) getViewForCard: (Card*) card {
+  PlayingCard *playingCard = card;
+  PlayingCardView *playingCardView =  [[PlayingCardView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+  playingCardView.suit = playingCard.suit;
+  playingCardView.rank = playingCard.rank;
+  return playingCardView;
+}
+
+- (void)viewDidLoad {
+  
 }
 
 @end

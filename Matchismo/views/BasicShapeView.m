@@ -26,16 +26,9 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
   UIBezierPath *outline = [self getOutlineOfShape];
-//  UIBezierPath *outline = [[UIBezierPath alloc] init];
-//  [outline moveToPoint:CGPointMake(self.bounds.size.width/2, 0)];
-//  [outline moveToPoint:CGPointMake(self.bounds.size.width,self.bounds.size.height/2)];
-//  [outline moveToPoint:CGPointMake(self.bounds.size.width/2, self.bounds.size.height)];
-//  [outline moveToPoint:CGPointMake(0, self.bounds.size.height/2)];
-//  [outline closePath];
-//  [outline addClip];
-  [[UIColor whiteColor] setFill];
+  [self.color setFill];
   [[UIColor blackColor] setStroke];
-  //UIRectFill(self.bounds);
+  outline.lineWidth = ((NSNumber *)[BasicShapeView ShapeBoarderThiknesses][self.pattern]).integerValue;
   [outline fill];
   [outline stroke];
 }
@@ -43,10 +36,10 @@
 - (UIBezierPath*) getOutlineOfShape {
   switch (self.shape) {
     case 1:
-      return [self outlineOfSquiggle];
+      return [self outlineOfOVal];
       break;
     case 2:
-      return [self outlineOfSquiggle];
+      return [self outlineOfDiamond];
       break;
     default:
       return [self outlineOfSquiggle];
@@ -104,6 +97,10 @@
 - (void) awakeFromNib {
   [super awakeFromNib];
   [self setup];
+}
+
++ (NSArray *) ShapeBoarderThiknesses {
+  return @[@-0, @3, @10];
 }
 
 

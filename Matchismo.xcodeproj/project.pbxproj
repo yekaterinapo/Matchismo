@@ -26,7 +26,6 @@
 		808880F9232E4CB9001CDDAF /* setGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 808880F8232E4CB9001CDDAF /* setGame.m */; };
 		808880FC232E57D5001CDDAF /* PlayingCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 808880FB232E57D5001CDDAF /* PlayingCardViewController.m */; };
 		808880FF232E667D001CDDAF /* SetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 808880FE232E667D001CDDAF /* SetViewController.m */; };
-		80A84887233246C100001FBF /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A84886233246C100001FBF /* HistoryViewController.m */; };
 		80A848BC23339C2600001FBF /* PlayingCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A848BA23339C2600001FBF /* PlayingCardView.m */; };
 		80A848C623339DC000001FBF /* SetCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A848C523339DC000001FBF /* SetCardView.m */; };
 		80A848C923339E5000001FBF /* CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A848C823339E5000001FBF /* CardView.m */; };
@@ -90,8 +89,6 @@
 		808880FB232E57D5001CDDAF /* PlayingCardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayingCardViewController.m; sourceTree = "<group>"; };
 		808880FD232E667D001CDDAF /* SetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetViewController.h; sourceTree = "<group>"; };
 		808880FE232E667D001CDDAF /* SetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetViewController.m; sourceTree = "<group>"; };
-		80A84885233246C100001FBF /* HistoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
-		80A84886233246C100001FBF /* HistoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
 		80A848BA23339C2600001FBF /* PlayingCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingCardView.m; sourceTree = "<group>"; };
 		80A848BB23339C2600001FBF /* PlayingCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingCardView.h; sourceTree = "<group>"; };
 		80A848C423339DC000001FBF /* SetCardView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetCardView.h; sourceTree = "<group>"; };
@@ -152,14 +149,12 @@
 		807ACF99231D3D8C0054E614 /* Matchismo */ = {
 			isa = PBXGroup;
 			children = (
+				807ACFA0231D3D8C0054E614 /* Main.storyboard */,
 				80A848CD2333A13100001FBF /* ViewController.h */,
 				80A848CE2333A13100001FBF /* ViewController.m */,
-				807ACFA0231D3D8C0054E614 /* Main.storyboard */,
 				807ACF9A231D3D8C0054E614 /* AppDelegate.h */,
 				807ACF9B231D3D8C0054E614 /* AppDelegate.m */,
 				807ACF9D231D3D8C0054E614 /* MatchingGameViewController.h */,
-				80A84885233246C100001FBF /* HistoryViewController.h */,
-				80A84886233246C100001FBF /* HistoryViewController.m */,
 				808880FA232E57D5001CDDAF /* PlayingCardViewController.h */,
 				808880FB232E57D5001CDDAF /* PlayingCardViewController.m */,
 				808880FD232E667D001CDDAF /* SetViewController.h */,
@@ -400,7 +395,6 @@
 				80A848C923339E5000001FBF /* CardView.m in Sources */,
 				80A848C623339DC000001FBF /* SetCardView.m in Sources */,
 				807ACF9C231D3D8C0054E614 /* AppDelegate.m in Sources */,
-				80A84887233246C100001FBF /* HistoryViewController.m in Sources */,
 				80A848BC23339C2600001FBF /* PlayingCardView.m in Sources */,
 				807ACFCE231D48250054E614 /* Card.m in Sources */,
 				807ACFDD231FC46B0054E614 /* MatchingGame.m in Sources */,

@@ -7,7 +7,8 @@
 //
 
 #import "MatchingGameViewController.h"
-#import "HistoryViewController.h"
+#import "views/CardView.h"
+
 
 @interface MatchingGameViewController ()
 
@@ -15,23 +16,25 @@
 
 @property (weak, nonatomic) IBOutlet UISwitch *threeMatchSwitch;
 
-@property (weak, nonatomic) IBOutlet UILabel *comenteryLable;
+@property (strong, nonatomic) NSMutableArray *cardViewsOnTable; /// array of CardViews
 
 @end
 
 @implementation MatchingGameViewController
 
-- (void) prepareForSegue: (UIStoryboardSegue *) segue sender: (id) sender {
-  if ( [segue.identifier isEqualToString:@"showHistory"] ) {
-    if ( [segue.destinationViewController isKindOfClass: [HistoryViewController class]] ) {
-      HistoryViewController* historyViewController = (HistoryViewController*) segue.destinationViewController;
-      historyViewController.history = self.game.history;
-    }
-  }
+- (void)viewDidLoad{
+  [self startNewGame];
 }
 
 - (Deck*) createDeck { //abstruct
   return nil; // [[PlayDeck alloc] init];
+}
+
+- (NSMutableArray *)cardViewsOnTable {
+  if(!_cardViewsOnTable){
+    _cardViewsOnTable = [[NSMutableArray alloc] init];
+  }
+  return _cardViewsOnTable;
 }
 
 - (IBAction) threeMatchSwitch:(id)sender {
@@ -40,51 +43,58 @@
   [self updateUI];
 }
 
-- (IBAction) touchResetButton: (id) sender {
-  NSUInteger count = [self.game.cards count];
-  Deck* deck = [self createDeck];
-  [self.game resetGameWithCardCount: count UsingDeck: deck];
-  [self.threeMatchSwitch setOn:NO];
+- (IBAction) touchResetButton:(id) sender {
+  [self startNewGame];
   [self updateUI];
 }
 
-- (IBAction) touchCardButton: (UIButton *) sender {
-  NSUInteger buttonIndex = [self.cardsButtons indexOfObject:sender];
-  [self.game FlipCardAtIndex:buttonIndex];
-  [self updateUI];
-  
-  
+- (void) startNewGame {
+  // remove all previouse cards from view;
+  for (UIView* cardView in self.cardViewsOnTable) {
+    [cardView removeFromSuperview];
+  }
+  // deal new cards
+  Deck* deck = [self createDeck];
+  [self.game resetGameWithCardCount: CARDS_IN_GAME UsingDeck: deck];
+  for (Card* card in self.game.cards) {
+    UIView *cardView = [self getViewForCard:card];
+    [self.cardViewsOnTable addObject:cardView];
+    [self.gameView addSubview: cardView];
+  }
+  [self.threeMatchSwitch setOn:NO];
+  [self.gameView setNeedsDisplay];
 }
+
+//- (IBAction) touchCardButton: (UIButton *) sender {
+//  NSUInteger buttonIndex = [self.cardsButtons indexOfObject:sender];
+//  [self.game FlipCardAtIndex:buttonIndex];
+//  [self updateUI];
+//}
+
 
 - (MatchingGame*) game {
   if (!_game) {
-    _game = [[MatchingGame alloc] initWithCardCount:[self.cardsButtons count] UsingDeck:[self createDeck]];
+    _game = [[MatchingGame alloc] initWithCardCount:CARDS_IN_GAME UsingDeck:[self createDeck]];
   }
   return _game;
 }
 
 - (void) updateUI {
-  // update mode switch
-  self.threeMatchSwitch.userInteractionEnabled = self.game.enableModeChange;
-  // update all the buttons
-  for (UIButton* cardButton in self.cardsButtons) {
-    // get the index of the button
-    NSUInteger cardIndex = [self.cardsButtons indexOfObject:cardButton];
-    Card *card = [self.game getCardAtIndex:cardIndex];
-    [cardButton setBackgroundImage:[self getImageForCard:card] forState:UIControlStateNormal];
-    [cardButton setAttributedTitle:[self getTitleForCard:card] forState:UIControlStateNormal];
-    cardButton.alpha = (card.matched)? 0.6:1;
-    [self.scoreLable setText: [NSString stringWithFormat:@"score: %d", (int)self.game.score]];
-  }
-  [self.comenteryLable setAttributedText:self.game.comentery];
+//  // update mode switch
+//  self.threeMatchSwitch.userInteractionEnabled = self.game.enableModeChange;
+//  // update all the buttons
+//  for (UIButton* cardButton in self.cardsButtons) {
+//    // get the index of the button
+//    NSUInteger cardIndex = [self.cardsButtons indexOfObject:cardButton];
+//    Card *card = [self.game getCardAtIndex:cardIndex];
+////getViewForCard    cardButton.alpha = (card.matched)? 0.6:1;
+//  }
+  [self.scoreLable setText: [NSString stringWithFormat:@"score: %d", (int)self.game.score]];
 }
 
-- (NSAttributedString*) getTitleForCard: (Card*) card {
-  return (card.chosen || card.matched)? [[NSAttributedString alloc] initWithString: card.contents.string]:[[NSAttributedString alloc] init];
+- (UIView*) getViewForCard: (Card*) card {
+  return [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
 }
 
-- (UIImage*) getImageForCard: (Card*) card {
-  return [UIImage imageNamed:(card.chosen || card.matched)? @"cardfront": @"cardback"];
-}
 
 @end
