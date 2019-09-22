@@ -876,8 +876,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sam-bT-AYh" customClass="PlayingCardView">
-                                <rect key="frame" x="101" y="207" width="173" height="252"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sam-bT-AYh" customClass="BasicShapeView">
+                                <rect key="frame" x="90" y="187" width="173" height="252"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <gestureRecognizers/>
@@ -906,7 +906,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2228" y="1047.5262368815593"/>
+            <point key="canvasLocation" x="1265" y="1031"/>
         </scene>
     </scenes>
     <resources>
