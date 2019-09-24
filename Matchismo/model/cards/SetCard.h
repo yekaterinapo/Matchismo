@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(instancetype)initWithAtributes: (NSArray*) attributes;
 
+
 //@property (nonatomic) NSUInteger *numberOfShapes;
 //@property (nonatomic) NSInteger *shape;
 //@property (nonatomic) NSInteger *shading;

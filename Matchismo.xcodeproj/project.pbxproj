@@ -31,6 +31,7 @@
 		80A848C923339E5000001FBF /* CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A848C823339E5000001FBF /* CardView.m */; };
 		80A848CF2333A13100001FBF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A848CE2333A13100001FBF /* ViewController.m */; };
 		80A848D22333AA8A00001FBF /* BasicShapeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A848D12333AA8A00001FBF /* BasicShapeView.m */; };
+		80BB0459233898F600467075 /* Grid.m in Sources */ = {isa = PBXBuildFile; fileRef = 80BB0458233898F600467075 /* Grid.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,8 @@
 		80A848CE2333A13100001FBF /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		80A848D02333AA8A00001FBF /* BasicShapeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BasicShapeView.h; sourceTree = "<group>"; };
 		80A848D12333AA8A00001FBF /* BasicShapeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BasicShapeView.m; sourceTree = "<group>"; };
+		80BB0457233898F600467075 /* Grid.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Grid.h; sourceTree = "<group>"; };
+		80BB0458233898F600467075 /* Grid.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Grid.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +197,8 @@
 				808880F6232E4BAB001CDDAF /* games */,
 				808880F4232E4B6D001CDDAF /* decks */,
 				808880F3232E4B4D001CDDAF /* cards */,
+				80BB0457233898F600467075 /* Grid.h */,
+				80BB0458233898F600467075 /* Grid.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -397,6 +402,7 @@
 				807ACF9C231D3D8C0054E614 /* AppDelegate.m in Sources */,
 				80A848BC23339C2600001FBF /* PlayingCardView.m in Sources */,
 				807ACFCE231D48250054E614 /* Card.m in Sources */,
+				80BB0459233898F600467075 /* Grid.m in Sources */,
 				807ACFDD231FC46B0054E614 /* MatchingGame.m in Sources */,
 				808880F223291D09001CDDAF /* SetDeck.m in Sources */,
 				807ACFDA231D6C1C0054E614 /* PlayDeck.m in Sources */,

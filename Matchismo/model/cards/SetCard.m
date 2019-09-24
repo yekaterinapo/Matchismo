@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SetCard.h"
 
-enum properties {k_color, k_shading, k_shape, k_multiplicity};
+//enum properties {k_color, k_shading, k_shape, k_multiplicity};
 //enum color_options {color1, color2, color3};
 //enum shading_options {hsading, color2, color3};
 
@@ -36,32 +36,33 @@ enum properties {k_color, k_shading, k_shape, k_multiplicity};
   return self;
 }
 
-+ (NSArray *) ShapeColors {
-  return @[[UIColor redColor], [UIColor greenColor], [UIColor blueColor]];
-}
-
-+ (NSArray *) ShapeBoarderThiknesses {
-  return @[@-0, @3, @10];
-}
-
-+ (NSArray *) ShapeStrings {
-  return @[@"▲", @"●", @"■"];
-}
+//+ (NSArray *) ShapeColors {
+//  return @[[UIColor redColor], [UIColor greenColor], [UIColor blueColor]];
+//}
+//
+//+ (NSArray *) ShapeBoarderThiknesses {
+//  return @[@-0, @3, @10];
+//}
+//
+//+ (NSArray *) ShapeStrings {
+//  return @[@"▲", @"●", @"■"];
+//}
 
 - (NSAttributedString*) contents {
   // get all atributes from card
   if (!_contents) {
-    UIColor *color = [SetCard ShapeColors][[self getPropertyAsInt: k_color]];
-    NSString *shape = [SetCard ShapeStrings][[self getPropertyAsInt: k_shape]];
-    NSNumber *thickness = [SetCard ShapeBoarderThiknesses][[self getPropertyAsInt: k_shading]];
-    int multiplicity = [self getPropertyAsInt: k_multiplicity] + 1;
-    // create contents string
-    NSMutableAttributedString *mutableContent = [[NSMutableAttributedString alloc] init];
-    for (int i = 0; i<multiplicity; i++) {
-      NSMutableAttributedString *attributedSymbol = [[NSMutableAttributedString alloc] initWithString:shape attributes: @{NSForegroundColorAttributeName:color, NSStrokeWidthAttributeName:thickness} ];
-      [mutableContent appendAttributedString:attributedSymbol];
-    }
-    _contents = [mutableContent copy];
+//    UIColor *color = [SetCard ShapeColors][[self getPropertyAsInt: k_color]];
+//    NSString *shape = [SetCard ShapeStrings][[self getPropertyAsInt: k_shape]];
+//    NSNumber *thickness = [SetCard ShapeBoarderThiknesses][[self getPropertyAsInt: k_shading]];
+//    int multiplicity = [self getPropertyAsInt: k_multiplicity] + 1;
+//    // create contents string
+//    NSMutableAttributedString *mutableContent = [[NSMutableAttributedString alloc] init];
+//    for (int i = 0; i<multiplicity; i++) {
+//      NSMutableAttributedString *attributedSymbol = [[NSMutableAttributedString alloc] initWithString:shape attributes: @{NSForegroundColorAttributeName:color, NSStrokeWidthAttributeName:thickness} ];
+//      [mutableContent appendAttributedString:attributedSymbol];
+//    }
+//    _contents = [mutableContent copy];
+    _contents = [[NSAttributedString alloc] init];
   }
   return _contents;
 }

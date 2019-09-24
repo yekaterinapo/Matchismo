@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BasicShapeView : UIView
 
-@property (strong, nonatomic) UIColor* color;
+@property (nonatomic) int color;
 @property (nonatomic) int pattern;
 @property (nonatomic) int shape;
 

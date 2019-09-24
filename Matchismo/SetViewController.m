@@ -10,6 +10,7 @@
 #import "./model/cards/Card.h"
 #import "./model/decks/SetDeck.h"
 #import "./model/games/setGame.h"
+#import "./views/SetCardView.h"
 
 @interface SetViewController ()
 
@@ -57,5 +58,21 @@
 //    [cardButton.layer setBorderWidth:(card.chosen)?3.0:0];
 //  }
 }
+
+
+- (CardView*) getViewForCard: (Card*) card WithFrame: (CGRect)aRect {
+  
+  SetCard *setCard = (SetCard *)card;
+  SetCardView *setCardView = [[SetCardView alloc] initWithFrame:aRect];
+  
+  // update attributes using setCard
+  setCardView.attributes = setCard.attributes;
+  
+  UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapCard:)];
+  [setCardView addGestureRecognizer:tapGestureRecognizer];
+  return (CardView *)setCardView;
+  
+}
+
 
 @end

@@ -22,9 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readwrite) NSUInteger matchSize;
 
-@property (strong, nonatomic, readonly) NSMutableAttributedString *comentery;
-
-@property (strong, nonatomic, readonly) NSAttributedString *history;
+@property (nonatomic, readonly) Deck *deck;
 
 // designated initializer
 - (instancetype) initWithCardCount: (NSUInteger) numOfCards UsingDeck: (Deck*) deck;
@@ -36,6 +34,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) resetGameWithCardCount: (NSUInteger) numOfCards UsingDeck: (Deck*) deck;
 
 - (NSInteger) matchScore: (NSArray*) cards;
+
+- (NSArray *) dealThreeMoreCards;
 
 @end
 

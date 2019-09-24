@@ -29,15 +29,17 @@
   return [[PlayDeck alloc] init];
 }
 
-- (UIView*) getViewForCard: (Card*) card {
-  PlayingCard *playingCard = card;
-  PlayingCardView *playingCardView =  [[PlayingCardView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+- (CardView*) getViewForCard: (Card*) card WithFrame: (CGRect)aRect {
+  
+  PlayingCard *playingCard = (PlayingCard *)card;
+  PlayingCardView *playingCardView = [[PlayingCardView alloc] initWithFrame:aRect];
+
   playingCardView.suit = playingCard.suit;
   playingCardView.rank = playingCard.rank;
-  return playingCardView;
-}
-
-- (void)viewDidLoad {
+  
+  UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapCard:)];
+  [playingCardView addGestureRecognizer:tapGestureRecognizer];
+  return (CardView *)playingCardView;
   
 }
 

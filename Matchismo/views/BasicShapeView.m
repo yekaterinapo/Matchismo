@@ -10,7 +10,7 @@
 
 @implementation BasicShapeView
 
-- (void) setColor: (UIColor *) color {
+- (void) setColor: (int) color {
   _color = color;
   [self setNeedsDisplay];
 }
@@ -20,15 +20,18 @@
   [self setNeedsDisplay];
 }
 
-
++ (NSArray *) ShapeColors {
+  return @[[UIColor redColor], [UIColor greenColor], [UIColor blueColor]];
+}
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
   UIBezierPath *outline = [self getOutlineOfShape];
-  [self.color setFill];
-  [[UIColor blackColor] setStroke];
-  outline.lineWidth = ((NSNumber *)[BasicShapeView ShapeBoarderThiknesses][self.pattern]).integerValue;
+  UIColor* color = [[BasicShapeView ShapeColors][self.color] colorWithAlphaComponent:[[BasicShapeView ShapeAlphas][self.pattern] floatValue]];
+  [color setFill];
+  [[UIColor blackColor ] setStroke];
+//  outline.lineWidth = ((NSNumber *)[BasicShapeView ShapeBoarderThiknesses][self.pattern]).integerValue;
   [outline fill];
   [outline stroke];
 }
@@ -99,8 +102,14 @@
   [self setup];
 }
 
-+ (NSArray *) ShapeBoarderThiknesses {
-  return @[@-0, @3, @10];
+- (instancetype)initWithFrame:(CGRect)frame {
+  self = [super initWithFrame:frame];
+  [self setup];
+  return self;
+}
+
++ (NSArray *) ShapeAlphas {
+  return @[@0.1, @0.7, @1.];
 }
 
 

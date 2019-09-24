@@ -18,11 +18,9 @@ static const int STEP_PENALTY = 1;
 
 @property (nonatomic, readwrite) BOOL enableModeChange;
 
-@property (strong, nonatomic) NSMutableAttributedString *comentery;
-
 @property (strong, nonatomic) NSMutableArray *selectedCards; //Card
 
-@property (strong, nonatomic, readwrite) NSAttributedString *history;
+@property (nonatomic, readwrite) Deck *deck;
 
 +(NSMutableArray*)dealCards: (NSUInteger) numOfCards UsingDeck: (Deck*) deck;
 
@@ -65,16 +63,8 @@ static const int STEP_PENALTY = 1;
   return _selectedCards;
 }
 
-- (NSMutableAttributedString*) comentery {
-  if(!_comentery){
-    _comentery = [[NSMutableAttributedString alloc] init];
-  }
-  return _comentery;
-}
-
 - (instancetype) initWithCardCount: (NSUInteger) numOfCards UsingDeck: (Deck*) deck {
   self = [super init];
-  
   if (self) {
     // draw an array of random cards from the deck
     NSMutableArray *cards = [MatchingGame dealCards: numOfCards UsingDeck: deck];
@@ -82,12 +72,12 @@ static const int STEP_PENALTY = 1;
       self = nil;
     }
     else{
+      self.deck = deck;
       self.cards = cards;
       self.enableModeChange = YES;
       self.matchSize = 2;
     }
   }
-  self.comentery = [[NSMutableAttributedString alloc] init];
   return self;
 }
 
@@ -107,6 +97,21 @@ static const int STEP_PENALTY = 1;
   return cards;
 }
 
+- (NSArray *) dealThreeMoreCards {
+  NSMutableArray *addedCards = [[NSMutableArray alloc] init];
+  for(int i = 1; i<=3; i++){
+    Card * card = [self.deck drawRandomCard];
+    if(card){
+      [addedCards addObject:card];
+      [self.cards addObject:card];
+    }
+    else{
+      break;
+    }
+  }
+  return addedCards;
+}
+
 - (void) resetGameWithCardCount: (NSUInteger) numOfCards UsingDeck: (Deck*) deck {
   NSMutableArray* cards = [MatchingGame dealCards:numOfCards UsingDeck:deck];
   self.score = 0;
@@ -114,8 +119,6 @@ static const int STEP_PENALTY = 1;
   self.currentChosenCount = 0;
   self.matchSize = 2;
   self.enableModeChange = YES;
-  self.comentery = [[NSMutableAttributedString alloc] init];
-  //    [[self.comentery mutableString] appendString:@"\n"];
   self.selectedCards = [[NSMutableArray alloc] init];
 }
 
@@ -128,29 +131,20 @@ static const int STEP_PENALTY = 1;
   // if we make a move, disable mode change
   self.enableModeChange = NO;
   // init commentery string
-  self.comentery = [[NSMutableAttributedString alloc] init];
   // get chosen card
   Card* currentCard = [self getCardAtIndex:index];
   
   if (currentCard.matched) {
-    [self.comentery appendAttributedString: currentCard.contents];
-    [self.comentery appendAttributedString:[[NSAttributedString alloc] initWithString:@" is already matched\n"]];
   }
   else if (currentCard.chosen) {
     [self.selectedCards removeObject:currentCard];
     currentCard.chosen = NO;
-    [self.comentery appendAttributedString:[[NSAttributedString alloc] initWithString:@"you just unselected "]];
-    [self.comentery appendAttributedString: currentCard.contents];
-    [self.comentery appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n"]];
   }
   else {
     // first select card
     currentCard.chosen = YES;
     [self.selectedCards addObject:currentCard];
     self.score -= STEP_PENALTY;
-    [self.comentery appendAttributedString:[[NSAttributedString alloc] initWithString:@"you just selected "]];
-    [self.comentery appendAttributedString: currentCard.contents];
-    [self.comentery appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n"]];
     // if reached matchSize attempt to make a match
     if (self.matchSize == [self.selectedCards count]) {
       NSInteger matchScore = [self matchScore: self.selectedCards];
@@ -166,18 +160,11 @@ static const int STEP_PENALTY = 1;
   }
   
   if ([self.selectedCards count] > 0) {
-    [self.comentery appendAttributedString:[[NSAttributedString alloc] initWithString:@"The currently selected cards are: "]];
-    [self.comentery appendAttributedString: [MatchingGame getStringOfCards: self.selectedCards]];
   }
   
 }
 
 - (void) handleMatch {
-  NSMutableAttributedString *comment = [MatchingGame getStringOfCards:self.selectedCards];
-  [comment appendAttributedString:[[NSAttributedString alloc] initWithString: @"were a match!\n"]];
-  [self.comentery appendAttributedString: comment];
-  [self appendToHistory: comment];
-  
   for(Card* card in self.selectedCards){
     card.chosen = NO;
     card.matched = YES;
@@ -186,12 +173,6 @@ static const int STEP_PENALTY = 1;
 }
 
 - (void) handleMismatch: (Card* ) currentCard {
-  NSMutableAttributedString *comment = [[NSMutableAttributedString alloc] initWithString:@"sadly "];
-  [comment appendAttributedString: [MatchingGame getStringOfCards:self.selectedCards]];
-  [comment appendAttributedString:[[NSAttributedString alloc] initWithString:@"are NOT a match\n"]];
-  [self.comentery appendAttributedString: comment];
-  [self appendToHistory: comment];
-  
   for(Card* card in self.selectedCards){
     card.chosen = NO;
   }
@@ -207,19 +188,6 @@ static const int STEP_PENALTY = 1;
     [cardString appendAttributedString:[[NSAttributedString alloc] initWithString:@"   "]];
   }
   return cardString;
-}
-
-- (NSAttributedString*) history {
-  if (!_history){
-    _history = [[NSAttributedString alloc] init];
-  }
-  return _history;
-}
-
-- (void) appendToHistory: (NSAttributedString*) event {
-  NSMutableAttributedString *mutableHistory = [self.history mutableCopy];
-  [mutableHistory appendAttributedString:event];
-  self.history = [mutableHistory copy];
 }
 
 @end
