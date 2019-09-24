@@ -36,6 +36,7 @@
 
   playingCardView.suit = playingCard.suit;
   playingCardView.rank = playingCard.rank;
+  playingCardView.faceUp = playingCard.chosen;
   
   UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapCard:)];
   [playingCardView addGestureRecognizer:tapGestureRecognizer];

@@ -67,6 +67,7 @@
   
   // update attributes using setCard
   setCardView.attributes = setCard.attributes;
+  setCardView.faceUp = setCard.chosen;
   
   UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapCard:)];
   [setCardView addGestureRecognizer:tapGestureRecognizer];

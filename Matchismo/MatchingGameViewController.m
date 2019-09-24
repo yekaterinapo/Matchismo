@@ -31,23 +31,6 @@
   [self startNewGame];
 }
 
-- (Grid *)grid {
-  if(!_grid){
-    _grid = [[Grid alloc] init];
-    _grid.cellAspectRatio = CARDS_ASPECT_RATIO;
-    _grid.size = self.gameView.bounds.size;
-    _grid.minimumNumberOfCells = CARDS_IN_GAME;
-  }
-  return _grid;
-}
-
-- (NSMutableArray *)cardsOnTable {
-  if(!_cardsOnTable) {
-    _cardsOnTable = [[NSMutableArray alloc] init];
-  }
-  return _cardsOnTable;
-}
-
 - (Deck*) createDeck { //abstruct
   Deck *deck = [[Deck alloc] init];
   for(int i = 1; i<20; i++){
@@ -55,13 +38,6 @@
   }
   return deck;
 //  return nil; // [[PlayDeck alloc] init];
-}
-
-- (NSMutableArray *)cardViewsOnTable {
-  if(!_cardViewsOnTable){
-    _cardViewsOnTable = [[NSMutableArray alloc] init];
-  }
-  return _cardViewsOnTable;
 }
 
 - (IBAction) threeMatchSwitch:(id)sender {
@@ -82,31 +58,38 @@
   Deck* deck = [self createDeck];
   [self.game resetGameWithCardCount: CARDS_IN_GAME UsingDeck: deck];
   [self addCardsToTable:self.game.cards];
+  
+  // add deck view
+  CGRect deckFrame = CGRectMake(self.gameView.frame.origin.x, self.gameView.frame.size.height + self.gameView.frame.origin.y,
+                                0.9*self.grid.cellSize.width, 0.9*self.grid.cellSize.height);
+  self.deckView = [self getViewForDeckWithFrame:deckFrame];
+  [self.view addSubview:self.deckView];
   [self.view setNeedsDisplay];
 }
 
-- (void)addCardsToTable:(NSArray *)cardsToAdd {
+- (void) addCardsToTable:(NSArray *) cardsToAdd {
   for (Card *card in cardsToAdd) {
     [self.cardsOnTable addObject:card];
-    NSUInteger index = [self.cardsOnTable indexOfObject:card];
-    CGRect aRect = [self.grid frameOfCellAtIndex:index];
-    aRect.size.height *= 0.9;
-    aRect.size.width *= 0.9;
-    CardView *cardView = [self getViewForCard:card WithFrame:aRect];
-    [self.cardViewsOnTable addObject:cardView];
-    [self.gameView addSubview:cardView];
   }
+  [self updateUI];
 }
 
-- (void)removeCardsFromTable:(NSArray *)cardsToRemove {
-  // now we have to reassemble cards so we will remove all cardsViews and put them back in place
-  [[self.gameView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
-  [self.cardViewsOnTable removeAllObjects];
-  // remove cards from lists
+- (void)removeCardsFromTable:(NSArray *) cardsToRemove {
   for (Card *card in cardsToRemove) {
     [self.cardsOnTable removeObject:card];
   }
-  //create views
+  [self updateUI];
+}
+
+- (void) updateUI {
+  [self.scoreLable setText: [NSString stringWithFormat:@"score: %d", (int)self.game.score]];
+  
+  // update mode switch
+  self.threeMatchSwitch.userInteractionEnabled = self.game.enableModeChange;
+
+  self.grid.minimumNumberOfCells = [self.cardsOnTable count];
+  [[self.gameView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+  [self.cardViewsOnTable removeAllObjects];
   for (Card *card in self.cardsOnTable) {
     NSUInteger index = [self.cardsOnTable indexOfObject:card];
     CGRect aRect = [self.grid frameOfCellAtIndex:index];
@@ -116,32 +99,7 @@
     [self.cardViewsOnTable addObject:cardView];
     [self.gameView addSubview:cardView];
   }
-}
-
-
-- (MatchingGame*) game {
-  if (!_game) {
-    _game = [[MatchingGame alloc] initWithCardCount:CARDS_IN_GAME UsingDeck:[self createDeck]];
-  }
-  return _game;
-}
-
-- (void) updateUI {
-  [self.scoreLable setText: [NSString stringWithFormat:@"score: %d", (int)self.game.score]];
   
-  
-  // update mode switch
-  self.threeMatchSwitch.userInteractionEnabled = self.game.enableModeChange;
-  // update all the buttons
-  /////////////////////////////////////////////////////////////
-  for (CardView* cardView in self.cardViewsOnTable) {
-    // get the index of the button
-    NSUInteger cardIndex = [self.cardViewsOnTable indexOfObject:cardView];
-    Card *card = [self.game getCardAtIndex:cardIndex];
-    cardView.faceUp = card.chosen;
-    cardView.alpha = (card.matched)? 0.6:1;
-    [self.scoreLable setText: [NSString stringWithFormat:@"score: %d", (int)self.game.score]];
-  }
 }
 
 // rename or split because this function also adds behaviour to cardview
@@ -155,9 +113,9 @@
 // rename or split because this function also adds behaviour to deckview
 - (CardView*) getViewForDeckWithFrame: (CGRect)aRect {
   CardView *deckView = [[CardView alloc] initWithFrame:aRect];
-  self.deckView.faceUp = NO;
+  deckView.faceUp = NO;
   UITapGestureRecognizer *tapDeckGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapDeck:)];
-  [self.deckView addGestureRecognizer:tapDeckGestureRecognizer];
+  [deckView addGestureRecognizer:tapDeckGestureRecognizer];
   return deckView;
 }
 
@@ -175,5 +133,37 @@
   [self updateUI];
 }
 
+#pragma mark - geters lazy instantiation
+
+- (NSMutableArray *)cardViewsOnTable {
+  if(!_cardViewsOnTable){
+    _cardViewsOnTable = [[NSMutableArray alloc] init];
+  }
+  return _cardViewsOnTable;
+}
+
+- (Grid *)grid {
+  if(!_grid){
+    _grid = [[Grid alloc] init];
+    _grid.cellAspectRatio = CARDS_ASPECT_RATIO;
+    _grid.size = self.gameView.bounds.size;
+    _grid.minimumNumberOfCells = CARDS_IN_GAME;
+  }
+  return _grid;
+}
+
+- (NSMutableArray *)cardsOnTable {
+  if(!_cardsOnTable) {
+    _cardsOnTable = [[NSMutableArray alloc] init];
+  }
+  return _cardsOnTable;
+}
+
+- (MatchingGame*) game {
+  if (!_game) {
+    _game = [[MatchingGame alloc] initWithCardCount:CARDS_IN_GAME UsingDeck:[self createDeck]];
+  }
+  return _game;
+}
 
 @end
