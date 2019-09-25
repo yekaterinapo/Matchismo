@@ -32,8 +32,8 @@ enum properties {k_color, k_shading, k_shape, k_multiplicity};
 #pragma mark - Drawing
 
 - (void)drawFaceOfCard {
-//  [[self subviews]
-//   makeObjectsPerformSelector:@selector(removeFromSuperview)];
+  [[self subviews]
+   makeObjectsPerformSelector:@selector(removeFromSuperview)];
   
   int color = [self getPropertyAsInt:k_color];
   int shape = [self getPropertyAsInt:k_shape];

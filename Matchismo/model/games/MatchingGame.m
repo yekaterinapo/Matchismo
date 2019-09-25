@@ -105,6 +105,7 @@ static const int STEP_PENALTY = 1;
 }
 
 - (void) resetGameWithCardCount: (NSUInteger) numOfCards UsingDeck: (Deck*) deck {
+  self.deck = deck;
   NSMutableArray* cards = [MatchingGame dealCards:numOfCards UsingDeck:deck];
   self.score = 0;
   self.cards = cards;

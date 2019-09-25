@@ -30,25 +30,14 @@
 }
 
 - (Deck*) createDeck { //abstruct
-  Deck *deck = [[Deck alloc] init];
-  for(int i = 1; i<20; i++){
-    [deck addCardToDeck:[[Card alloc] init]];
-  }
-  return deck;
-//  return nil; // [[PlayDeck alloc] init];
+  return nil;
 }
 
-
-
 - (void) startNewGame {
-  // remove all cards frome table
   [self removeCardsFromTable:[self.cardsOnTable copy]]; //copy because selector operates on cardsOnTable
-  //deal new cards
   Deck* deck = [self createDeck];
-  
   [self.game resetGameWithCardCount: CARDS_IN_GAME UsingDeck: deck];
   [self addCardsToTable:self.game.cards];
-  
   // set size of deck view
   CGRect deckFrame = CGRectMake(self.deckView.frame.origin.x, self.deckView.frame.origin.y,
                                 0.9*self.grid.cellSize.width, 0.9*self.grid.cellSize.height);
@@ -70,37 +59,14 @@
 
 - (void) updateUI {
   [self.scoreLable setText: [NSString stringWithFormat:@"score: %d", (int)self.game.score]];
-
-  // update mode switch
   self.threeMatchSwitch.userInteractionEnabled = self.game.enableModeChange;
+  [self animateRearangeCards];
+  [self removeChosenCards];
+}
 
-  // update cards
-  NSArray *frames = [self calculateNewLocationsOfCards]; //array of frames (CGRect)
-
-  // animate and remove matched at end of animation
-  [UIView animateWithDuration:ANIMATION_DURATION
-                        delay:0
-                      options:UIViewAnimationOptionBeginFromCurrentState
-                   animations:^{
-       for (Card *card in self.cardsOnTable) {
-         NSUInteger indexInCardsOnTable = [self.cardsOnTable indexOfObject:card];
-         CardView *cardView = [self.cardViewsOnTable objectAtIndex:indexInCardsOnTable];
-         cardView.faceUp = card.chosen;
-         CGRect destanationFrame = [[frames objectAtIndex:indexInCardsOnTable] CGRectValue];
-         cardView.frame = destanationFrame;
-       }
-      } completion:^(BOOL finished) {
-        for (Card *card in self.cardsOnTable) {
-          NSUInteger indexInCardsOnTable = [self.cardsOnTable indexOfObject:card];
-          CardView *cardView = [self.cardViewsOnTable objectAtIndex:indexInCardsOnTable];
-          if (card.matched) {
-            [cardView removeFromSuperview];
-          }
-        }
-      }];
-  
-   NSMutableArray *chosenCards = [[NSMutableArray alloc] init];
-   NSMutableArray *viewsOfChosenCards = [[NSMutableArray alloc] init];
+- (void)removeChosenCards {
+  NSMutableArray *chosenCards = [[NSMutableArray alloc] init];
+  NSMutableArray *viewsOfChosenCards = [[NSMutableArray alloc] init];
   
   for (Card *card in self.cardsOnTable) {
     if(card.matched) {
@@ -112,16 +78,37 @@
   }
   [self.cardsOnTable removeObjectsInArray: chosenCards];
   [self.cardViewsOnTable removeObjectsInArray: viewsOfChosenCards];
-  
+}
+
+- (void) animateRearangeCards {
+  NSArray *frames = [self calculateNewLocationsOfCards]; //array of frames (CGRect)
+  [UIView animateWithDuration:ANIMATION_DURATION
+                        delay:0
+                      options:UIViewAnimationOptionBeginFromCurrentState
+                   animations:^{
+                     for (Card *card in self.cardsOnTable) {
+                       NSUInteger indexInCardsOnTable = [self.cardsOnTable indexOfObject:card];
+                       CardView *cardView = [self.cardViewsOnTable objectAtIndex:indexInCardsOnTable];
+                       cardView.faceUp = card.chosen;
+                       CGRect destanationFrame = [[frames objectAtIndex:indexInCardsOnTable] CGRectValue];
+                       cardView.frame = destanationFrame;
+                     }
+                   } completion:^(BOOL finished) {
+                     for (Card *card in self.cardsOnTable) {
+                       NSUInteger indexInCardsOnTable = [self.cardsOnTable indexOfObject:card];
+                       CardView *cardView = [self.cardViewsOnTable objectAtIndex:indexInCardsOnTable];
+                       if (card.matched) {
+                         [cardView removeFromSuperview];
+                       }
+                     }
+                   }];
 }
 
 - (NSArray *) calculateNewLocationsOfCards {
 
   self.grid.minimumNumberOfCells = [self unmatchedCardsCount];
-  
-  // calculate new locations and sizes
+
   NSMutableArray *frames = [[NSMutableArray alloc] init]; //array of frames (CGRect)
-  //NSMutableArray *newCardsOnTable = [[NSMutableArray alloc] init]; //array of Card
   int i = 0;
   for (Card *card in self.cardsOnTable) {
     NSUInteger indexInCardsOnTable = [self.cardsOnTable indexOfObject:card];
@@ -131,8 +118,6 @@
       frame = CGRectMake(-100, -100 , cardView.frame.size.width, cardView.frame.size.height);
     }
     else {
-//      [newCardsOnTable addObject:card];
-//      NSUInteger indexInNewCardsOnTable = [newCardsOnTable indexOfObject:card];
       frame = [self.grid frameOfCellAtIndex:i];
       frame.size.height *= 0.9;
       frame.size.width *= 0.9;
@@ -152,7 +137,6 @@
   }
   return minimumNumberOfCells;
 }
-
 
 // rename or split because this function also adds behaviour to cardview
 - (CardView*) getViewForCard: (Card*) card WithFrame: (CGRect)aRect {

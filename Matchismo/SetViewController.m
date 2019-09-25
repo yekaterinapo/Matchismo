@@ -33,7 +33,6 @@
   SetCard *setCard = (SetCard *)card;
   SetCardView *setCardView = [[SetCardView alloc] initWithFrame:aRect];
   
-  // update attributes using setCard
   setCardView.attributes = setCard.attributes;
   setCardView.faceUp = setCard.chosen;
   
