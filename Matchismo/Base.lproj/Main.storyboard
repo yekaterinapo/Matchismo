@@ -37,14 +37,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="score: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="otz-tg-t2O">
-                                <rect key="frame" x="29" y="526" width="153" height="22"/>
+                                <rect key="frame" x="16" y="541" width="153" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sQh-dG-kfY">
-                                <rect key="frame" x="192" y="552" width="154" height="50"/>
+                                <rect key="frame" x="205" y="552" width="154" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="restart game" backgroundImage="cardfront">
@@ -55,15 +55,20 @@
                                 </connections>
                             </button>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="bp3-2z-o87">
-                                <rect key="frame" x="29" y="562" width="49" height="31"/>
+                                <rect key="frame" x="16" y="571" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="threeMatchSwitch:" destination="BYZ-38-t0r" eventType="valueChanged" id="rVw-5D-fn2"/>
                                 </connections>
                             </switch>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5M0-Ac-MD9">
-                                <rect key="frame" x="29" y="65" width="317" height="332"/>
+                                <rect key="frame" x="16" y="20" width="343" height="396"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aUQ-Qf-Qfb" customClass="CardView">
+                                <rect key="frame" x="16" y="424" width="70" height="109"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.56031829119999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -74,6 +79,7 @@
                         <barButtonItem key="rightBarButtonItem" title="history" id="fgn-TF-U4l"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="deckView" destination="aUQ-Qf-Qfb" id="eRA-dU-76K"/>
                         <outlet property="gameView" destination="5M0-Ac-MD9" id="5Ut-PX-vLZ"/>
                         <outlet property="scoreLable" destination="otz-tg-t2O" id="6wS-Ul-EWu"/>
                         <outlet property="threeMatchSwitch" destination="bp3-2z-o87" id="ME1-hw-MWI"/>
@@ -81,7 +87,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1318" y="354"/>
+            <point key="canvasLocation" x="1317.5999999999999" y="353.9730134932534"/>
         </scene>
         <!--Set Game-->
         <scene sceneID="Fj0-c2-vFc">
@@ -91,9 +97,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zWP-GW-F3A">
-                                <rect key="frame" x="193" y="548" width="154" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zWP-GW-F3A">
+                                <rect key="frame" x="229" y="509" width="130" height="96"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="restart game" backgroundImage="cardfront">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -102,19 +107,40 @@
                                     <action selector="touchResetButton:" destination="xsp-Lf-66c" eventType="touchUpInside" id="N39-4E-Ovo"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="score: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UdB-2m-3FC">
-                                <rect key="frame" x="16" y="576" width="153" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="score: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UdB-2m-3FC">
+                                <rect key="frame" x="16" y="576" width="84" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a7C-0i-ESQ">
-                                <rect key="frame" x="30" y="56" width="317" height="332"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a7C-0i-ESQ">
+                                <rect key="frame" x="16" y="20" width="343" height="431"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0lp-KS-DTd" customClass="CardView">
+                                <rect key="frame" x="16" y="459" width="84" height="109"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="0.81571061643835618" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="0lp-KS-DTd" firstAttribute="centerX" secondItem="UdB-2m-3FC" secondAttribute="centerX" id="2By-ea-Lmd"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="UdB-2m-3FC" secondAttribute="bottom" constant="13" id="3M9-fk-riI"/>
+                            <constraint firstItem="UdB-2m-3FC" firstAttribute="leading" secondItem="0lp-KS-DTd" secondAttribute="leading" id="7jG-75-tDq"/>
+                            <constraint firstItem="0lp-KS-DTd" firstAttribute="top" secondItem="Mff-NS-uhA" secondAttribute="top" constant="459" id="9Nd-m2-8yv"/>
+                            <constraint firstItem="a7C-0i-ESQ" firstAttribute="trailing" secondItem="zWP-GW-F3A" secondAttribute="trailing" id="Dvg-9C-mV5"/>
+                            <constraint firstItem="0lp-KS-DTd" firstAttribute="leading" secondItem="a7C-0i-ESQ" secondAttribute="leading" id="Jeo-Ae-xVb"/>
+                            <constraint firstItem="UdB-2m-3FC" firstAttribute="leading" secondItem="Mff-NS-uhA" secondAttribute="leadingMargin" id="LBb-VE-5lt"/>
+                            <constraint firstItem="UdB-2m-3FC" firstAttribute="top" secondItem="0lp-KS-DTd" secondAttribute="bottom" constant="8" symbolic="YES" id="Lo4-jq-IFH"/>
+                            <constraint firstItem="0lp-KS-DTd" firstAttribute="leading" secondItem="a7C-0i-ESQ" secondAttribute="leading" id="NZT-ty-Cxo"/>
+                            <constraint firstItem="a7C-0i-ESQ" firstAttribute="top" secondItem="Mff-NS-uhA" secondAttribute="topMargin" id="WT6-gt-7Ub"/>
+                            <constraint firstItem="0lp-KS-DTd" firstAttribute="leading" secondItem="a7C-0i-ESQ" secondAttribute="leading" id="XBe-Rq-yvN"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="zWP-GW-F3A" secondAttribute="bottom" constant="13" id="f6L-id-eZZ"/>
+                            <constraint firstItem="0lp-KS-DTd" firstAttribute="top" secondItem="a7C-0i-ESQ" secondAttribute="bottom" constant="8" symbolic="YES" id="fx7-YE-Quh"/>
+                            <constraint firstItem="UdB-2m-3FC" firstAttribute="leading" secondItem="a7C-0i-ESQ" secondAttribute="leading" id="gGc-Lx-aNE"/>
+                            <constraint firstItem="a7C-0i-ESQ" firstAttribute="trailing" secondItem="Mff-NS-uhA" secondAttribute="trailingMargin" id="inh-cb-9Lq"/>
+                            <constraint firstItem="0lp-KS-DTd" firstAttribute="top" secondItem="a7C-0i-ESQ" secondAttribute="bottom" constant="8" id="jI8-gD-a9b"/>
+                            <constraint firstItem="UdB-2m-3FC" firstAttribute="leading" secondItem="a7C-0i-ESQ" secondAttribute="leading" id="tyk-NQ-8yE"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="ZH0-hh-eUN"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="4v8-zD-VyA"/>
@@ -122,13 +148,14 @@
                         <barButtonItem key="rightBarButtonItem" title="history" id="0XC-Iu-0SF"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="deckView" destination="0lp-KS-DTd" id="SE7-gy-i6D"/>
                         <outlet property="gameView" destination="a7C-0i-ESQ" id="PqR-1h-Bkz"/>
                         <outlet property="scoreLable" destination="UdB-2m-3FC" id="WSK-Ig-uMb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zgl-uh-ewa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1317.5999999999999" y="-451.12443778110946"/>
+            <point key="canvasLocation" x="1341.5999999999999" y="-468.21589205397305"/>
         </scene>
         <!--Matching Game-->
         <scene sceneID="nSz-7K-W9f">

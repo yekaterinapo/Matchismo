@@ -13,13 +13,14 @@
 enum properties {k_color, k_shading, k_shape, k_multiplicity};
 
 @interface SetCardView()
+
 @property (nonatomic) CGFloat faceCardScaleFactor;
+
 @end
 
 @implementation SetCardView
 
 @synthesize faceCardScaleFactor = _faceCardScaleFactor;
-
 
 -(NSArray *)attributes{
   if (!_attributes) {
@@ -31,8 +32,8 @@ enum properties {k_color, k_shading, k_shape, k_multiplicity};
 #pragma mark - Drawing
 
 - (void)drawFaceOfCard {
-  [[self subviews]
-   makeObjectsPerformSelector:@selector(removeFromSuperview)];
+//  [[self subviews]
+//   makeObjectsPerformSelector:@selector(removeFromSuperview)];
   
   int color = [self getPropertyAsInt:k_color];
   int shape = [self getPropertyAsInt:k_shape];
@@ -59,33 +60,9 @@ enum properties {k_color, k_shading, k_shape, k_multiplicity};
   self.alpha = 0.6;
 }
 
-
 - (int) getPropertyAsInt: (int) idx {
   return (int)[(NSNumber *)[self.attributes objectAtIndex:(idx)] integerValue];
 }
-
-#pragma mark - Initialization
-
-- (void)setup
-{
-  self.backgroundColor = nil;
-  self.opaque = NO;
-  self.contentMode = UIViewContentModeRedraw;
-}
-
-- (void)awakeFromNib
-{
-  [super awakeFromNib];
-  [self setup];
-}
-
-- (id)initWithFrame:(CGRect)frame
-{
-  self = [super initWithFrame:frame];
-  [self setup];
-  return self;
-}
-
 
 @end
 

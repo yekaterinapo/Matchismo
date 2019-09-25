@@ -10,10 +10,6 @@
 #import "views/PlayingCardView.h"
 #import "model/cards/PlayingCard.h"
 
-@interface PlayingCardViewController ()
-
-@end
-
 @implementation PlayingCardViewController
 
 @synthesize game = _game;

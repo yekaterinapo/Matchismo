@@ -37,6 +37,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSArray *) dealThreeMoreCards;
 
+- (void) FlipCard: (Card *) card ;
+
 @end
 
 NS_ASSUME_NONNULL_END

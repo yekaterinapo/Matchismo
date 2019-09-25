@@ -22,14 +22,6 @@ static const int STEP_PENALTY = 1;
 
 @property (nonatomic, readwrite) Deck *deck;
 
-+(NSMutableArray*)dealCards: (NSUInteger) numOfCards UsingDeck: (Deck*) deck;
-
-+(NSMutableAttributedString*)getStringOfCards:(NSMutableArray*) cards;
-
--(void)handleMatch;
-
--(void)handleMismatch: (Card*) currentCard;
-
 @end
 @implementation MatchingGame
 
@@ -126,6 +118,11 @@ static const int STEP_PENALTY = 1;
   return (index < [self.cards count])? self.cards[index] : nil;
 }
 
+- (void) FlipCard: (Card *) card {
+  NSUInteger indexOfCard = [self.cards indexOfObject:card];
+  [self FlipCardAtIndex: indexOfCard];
+}
+
 - (void) FlipCardAtIndex: (NSUInteger) index {
   
   // if we make a move, disable mode change
@@ -191,52 +188,3 @@ static const int STEP_PENALTY = 1;
 }
 
 @end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// for match of size two
-
-//    PlayingCard* currentCard = [self getCardAtIndex:index];
-//    // if we flip down or already matched do nothing
-//    if(!currentCard.chosen && !currentCard.matched){
-//        // deduct score for every peak
-//        self.score -=STEP_PENALTY;
-//        // go over all cards and look for a faceup card
-//        for(PlayingCard* otherCard in self.cards){
-//            if(otherCard.chosen && !otherCard.matched){
-//                otherCard.chosen = NO;
-//                int matchScore = [currentCard Matched:@[otherCard]];
-//                self.score += (MATCH_BONUS*matchScore);
-//                if (matchScore>0){
-//                    otherCard.matched = YES;
-//                    currentCard.matched = YES;
-//                }
-//                else{
-//                    self.score-=MISMATCH_PENALTY;
-//                }
-//                break;
-//            }
-//        }
-//    }
-//    //flip chosen card
-//    currentCard.chosen = !currentCard.chosen;
-
-

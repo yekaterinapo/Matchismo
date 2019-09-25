@@ -8,10 +8,6 @@
 
 #import "SetDeck.h"
 
-@interface SetDeck()
-- (void) createDeckRec: (NSArray*) ShapeOfAttributes WithPrefix: (NSArray*) attributes;
-@end
-
 @implementation SetDeck
 
 - (instancetype) initWithAttributeCount: (NSArray*) ShapeOfattributes {

@@ -29,4 +29,6 @@ static const float CARDS_ASPECT_RATIO = 0.7;
 
 @property (strong, nonatomic) MatchingGame *game; //overide for your type of game
 
+@property (strong, nonatomic) NSMutableArray *cardViewsOnTable; /// array of CardViews
+
 @end

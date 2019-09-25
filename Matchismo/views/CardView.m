@@ -9,7 +9,7 @@
 #import "CardView.h"
 
 @interface CardView()
-@property (nonatomic) CGFloat faceCardScaleFactor;
+@property (nonatomic, readwrite) CGFloat faceCardScaleFactor;
 @end
 
 @implementation CardView
@@ -32,23 +32,10 @@
   [self setNeedsDisplay];
 }
 
-
 - (void)setFaceUp:(BOOL)faceUp
 {
   _faceUp = faceUp;
   [self setNeedsDisplay];
-}
-
-
-#pragma mark - Gesture Handling
-
-- (void)pinch:(UIPinchGestureRecognizer *)gesture
-{
-  if ((gesture.state == UIGestureRecognizerStateChanged) ||
-      (gesture.state == UIGestureRecognizerStateEnded)) {
-    self.faceCardScaleFactor *= gesture.scale;
-    gesture.scale = 1.0;
-  }
 }
 
 #pragma mark - Drawing
@@ -58,7 +45,7 @@
 
 - (CGFloat)cornerScaleFactor { return self.bounds.size.height / CORNER_FONT_STANDARD_HEIGHT; }
 - (CGFloat)cornerRadius { return CORNER_RADIUS * [self cornerScaleFactor]; }
-- (CGFloat)cornerOffset { return [self cornerRadius] / 3.0; }
+
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

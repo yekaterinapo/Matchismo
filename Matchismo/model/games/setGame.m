@@ -13,14 +13,6 @@ static const int MIS_MATCH_SCORE = 0;
 static const int MATCH_SCORE = 1;
 static const int NUM_OF_ATRIBUTES = 4;
 
-@interface setGame()
-
-- (NSArray*) historgamForAttribute: (int) CardAtributeIdx forCards: (NSArray*) cards;
-
-- (BOOL) isAttributeOkayFromHistogram: (NSArray*) histogramForAttribute;
-
-@end
-
 @implementation setGame
 
 - (NSInteger) matchScore: (NSArray*) cards {
@@ -49,7 +41,7 @@ static const int NUM_OF_ATRIBUTES = 4;
     hasOptionCountOfOne = (optionCount.intValue==1)? YES:hasOptionCountOfOne;
     hasOptionCountOfMoreThenOne = (optionCount.intValue>1)? YES:hasOptionCountOfMoreThenOne;
   }
-  return (hasOptionCountOfOne && hasOptionCountOfMoreThenOne)? NO:YES;
+  return !(hasOptionCountOfOne && hasOptionCountOfMoreThenOne);
 }
 
 - (instancetype) initWithCardCount: (NSUInteger) numOfCards UsingDeck: (Deck*) deck{

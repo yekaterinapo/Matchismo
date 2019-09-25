@@ -10,17 +10,11 @@
 
 @interface CardView : UIView
 
-- (void)pinch:(UIPinchGestureRecognizer *)gesture;
-
 - (instancetype)initWithFrame:(CGRect)frame;
 
-- (void)tap: (UITapGestureRecognizer *) tapGestureRecognizer;
+- (void)drawFaceOfCard; // protected
 
-- (void)drawFaceOfCard;
-
-@property (nonatomic) NSUInteger rank;
-
-@property (strong, nonatomic) NSString *suit;
+- (void)drawBackOfCard; // protected
 
 @property (nonatomic) BOOL faceUp;
 

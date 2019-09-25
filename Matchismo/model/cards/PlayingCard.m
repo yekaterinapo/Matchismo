@@ -8,14 +8,6 @@
 
 #import "PlayingCard.h"
 
-@interface PlayingCard()
-
-- (NSAttributedString *) contents;
-
-+ (NSArray *) RankStrings;
-
-@end
-
 @implementation PlayingCard
 
 @synthesize rank = _rank;

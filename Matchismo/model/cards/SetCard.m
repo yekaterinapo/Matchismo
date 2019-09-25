@@ -9,10 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "SetCard.h"
 
-//enum properties {k_color, k_shading, k_shape, k_multiplicity};
-//enum color_options {color1, color2, color3};
-//enum shading_options {hsading, color2, color3};
-
 @implementation SetCard
 
 @synthesize contents = _contents;

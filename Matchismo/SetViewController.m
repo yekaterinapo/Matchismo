@@ -12,21 +12,9 @@
 #import "./model/games/setGame.h"
 #import "./views/SetCardView.h"
 
-@interface SetViewController ()
-
-@end
-
 @implementation SetViewController
 
 @synthesize game = _game;
-
-- (void) viewDidLoad {
-  [super viewDidLoad];
-  NSUInteger count = [self.game.cards count];
-  Deck* deck = [self createDeck];
-  [self.game resetGameWithCardCount: count UsingDeck: deck ];
-  [self updateUI];
-}
 
 - (MatchingGame*) game {
   if (!_game) {
@@ -39,26 +27,6 @@
   NSArray *ShapeOfattributes = @[@3,@3,@3,@3];
   return [[SetDeck alloc] initWithAttributeCount:ShapeOfattributes];
 }
-
-- (UIImage*) getImageForCard: (Card*) card {
-  return [UIImage imageNamed:@"cardfront"];
-}
-
-- (NSAttributedString*) getTitleForCard:(Card*) card {
-  return card.contents;
-}
-
-- (void) updateUI {
-  [super updateUI];
-  // hilight selected buttons
-//  for (UIButton* cardButton in self.cardsButtons) {
-//    // get the index of the button
-//    NSUInteger cardIndex = [self.cardsButtons indexOfObject:cardButton];
-//    Card *card = [self.game getCardAtIndex:cardIndex];
-//    [cardButton.layer setBorderWidth:(card.chosen)?3.0:0];
-//  }
-}
-
 
 - (CardView*) getViewForCard: (Card*) card WithFrame: (CGRect)aRect {
   

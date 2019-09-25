@@ -101,6 +101,11 @@
   return self.resolved;
 }
 
+- (CGPoint)centerOfCellAtIndex:(NSUInteger)index {
+  NSUInteger rowIndex = index / self.columnCount;
+  NSUInteger columnIndex = index % self.columnCount;
+  return [self centerOfCellAtRow:rowIndex inColumn:columnIndex];
+}
 
 - (CGPoint)centerOfCellAtRow:(NSUInteger)row inColumn:(NSUInteger)column
 {
