@@ -25,7 +25,7 @@
   return [[PlayDeck alloc] init];
 }
 
-- (CardView*) getViewForCard: (Card*) card WithFrame: (CGRect)aRect {
+- (CardView*) ViewForCard: (Card*) card WithFrame: (CGRect)aRect {
   
   PlayingCard *playingCard = (PlayingCard *)card;
   PlayingCardView *playingCardView = [[PlayingCardView alloc] initWithFrame:aRect];
@@ -38,6 +38,15 @@
   [playingCardView addGestureRecognizer:tapGestureRecognizer];
   return (CardView *)playingCardView;
   
+}
+
+- (void) FlipCardView: (CardView *) cardView {
+  UIViewAnimationOptions TransitionFlip = (cardView.faceUp)? UIViewAnimationOptionTransitionFlipFromLeft:UIViewAnimationOptionTransitionFlipFromRight;
+  [UIView transitionWithView:cardView
+                    duration:1
+                     options:TransitionFlip
+                  animations:^{cardView.faceUp = !cardView.faceUp;}
+                  completion:^(BOOL finished) {}];
 }
 
 @end

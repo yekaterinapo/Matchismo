@@ -21,7 +21,9 @@ static const float CARDS_ASPECT_RATIO = 0.7;
 
 - (Deck*) createDeck; // overide with your deck
 
-- (CardView *) ViewWithBehaviourForCard: (Card*) card WithFrame: (CGRect)aRect; // overide to return view of your cards
+- (CardView *) ViewForCard: (Card*) card WithFrame: (CGRect)aRect; // overide to return view of your cards
+
+- (void) FlipCardView: (CardView *) cardView;
 
 - (IBAction)tapCard:(UITapGestureRecognizer *)sender ;
 

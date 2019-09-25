@@ -28,7 +28,7 @@
   return [[SetDeck alloc] initWithAttributeCount:ShapeOfattributes];
 }
 
-- (CardView*) getViewForCard: (Card*) card WithFrame: (CGRect)aRect {
+- (CardView*) ViewForCard: (Card*) card WithFrame: (CGRect)aRect {
   
   SetCard *setCard = (SetCard *)card;
   SetCardView *setCardView = [[SetCardView alloc] initWithFrame:aRect];
@@ -40,6 +40,16 @@
   [setCardView addGestureRecognizer:tapGestureRecognizer];
   return (CardView *)setCardView;
   
+}
+
+- (void) FlipCardView: (CardView *) cardView {
+  [UIView animateWithDuration:1
+                        delay:0
+                      options:UIViewAnimationOptionBeginFromCurrentState
+                   animations:^{
+                     cardView.alpha = (cardView.faceUp)?0.6:1;
+                   }
+                   completion:^(BOOL finished) {}];
 }
 
 

@@ -29,10 +29,6 @@
   [self startNewGame];
 }
 
-- (Deck*) createDeck { //abstruct
-  return nil;
-}
-
 - (void) startNewGame {
   [self removeCardsFromTable:[self.cardsOnTable copy]]; //copy because selector operates on cardsOnTable
   Deck* deck = [self createDeck];
@@ -84,12 +80,11 @@
   NSArray *frames = [self calculateNewLocationsOfCards]; //array of frames (CGRect)
   [UIView animateWithDuration:ANIMATION_DURATION
                         delay:0
-                      options:UIViewAnimationOptionBeginFromCurrentState
+                      options:UIViewAnimationOptionBeginFromCurrentState&UIViewAnimationOptionCurveEaseInOut
                    animations:^{
                      for (Card *card in self.cardsOnTable) {
                        NSUInteger indexInCardsOnTable = [self.cardsOnTable indexOfObject:card];
-                       CardView *cardView = [self.cardViewsOnTable objectAtIndex:indexInCardsOnTable];
-                       cardView.faceUp = card.chosen;
+                       CardView *cardView = [self.cardViewsOnTable objectAtIndex:indexInCardsOnTable];{}
                        CGRect destanationFrame = [[frames objectAtIndex:indexInCardsOnTable] CGRectValue];
                        cardView.frame = destanationFrame;
                      }
@@ -139,7 +134,7 @@
 }
 
 // rename or split because this function also adds behaviour to cardview
-- (CardView*) getViewForCard: (Card*) card WithFrame: (CGRect)aRect {
+- (CardView*) ViewForCard: (Card*) card WithFrame: (CGRect)aRect {
   CardView *cardView = [[CardView alloc] initWithFrame:aRect];
   UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapCard:)];
   [cardView addGestureRecognizer:tapGestureRecognizer];
@@ -170,12 +165,12 @@
   CardView *cardView = (CardView *)sender.view;
   NSUInteger cardIndex = [self.cardViewsOnTable indexOfObject:cardView];
   Card *card = [self.cardsOnTable objectAtIndex:cardIndex];
-//  Card *card = [self.game getCardAtIndex:cardIndex];
   [self.game FlipCard: card];
-  //  cardView.faceUp = card.chosen;
+  [self FlipCardView: cardView];
   [self updateUI];
-
 }
+
+- (void) FlipCardView: (CardView *) cardView { }
 
 - (IBAction)tapDeck:(UITapGestureRecognizer *)sender {
 //  [self.game dealThreeMoreCards];
@@ -186,7 +181,7 @@
 - (void) addCardsToTable:(NSArray *) cardsToAdd {
   for (Card *card in cardsToAdd) {
     [self.cardsOnTable addObject:card];
-    CardView* cardView = [self getViewForCard:card WithFrame:self.deckView.frame];
+    CardView* cardView = [self ViewForCard:card WithFrame:self.deckView.frame];
     [self.cardViewsOnTable addObject:cardView];
     [self.gameView addSubview:cardView];
   }
@@ -210,6 +205,10 @@
     _grid.minimumNumberOfCells = CARDS_IN_GAME;
   }
   return _grid;
+}
+
+- (Deck*) createDeck { //abstruct
+  return nil;
 }
 
 - (NSMutableArray *)cardsOnTable {
