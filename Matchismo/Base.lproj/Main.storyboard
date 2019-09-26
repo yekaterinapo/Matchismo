@@ -64,6 +64,10 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5M0-Ac-MD9">
                                 <rect key="frame" x="16" y="20" width="343" height="396"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="4Tb-rs-wll" appends="YES" id="Iio-CM-tug"/>
+                                </connections>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aUQ-Qf-Qfb" customClass="CardView">
                                 <rect key="frame" x="16" y="424" width="70" height="109"/>
@@ -81,11 +85,13 @@
                     <connections>
                         <outlet property="deckView" destination="aUQ-Qf-Qfb" id="eRA-dU-76K"/>
                         <outlet property="gameView" destination="5M0-Ac-MD9" id="5Ut-PX-vLZ"/>
+                        <outlet property="pinchCards" destination="4Tb-rs-wll" id="hf1-vX-oc9"/>
                         <outlet property="scoreLable" destination="otz-tg-t2O" id="6wS-Ul-EWu"/>
                         <outlet property="threeMatchSwitch" destination="bp3-2z-o87" id="ME1-hw-MWI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <pinchGestureRecognizer id="4Tb-rs-wll"/>
             </objects>
             <point key="canvasLocation" x="1317.5999999999999" y="353.9730134932534"/>
         </scene>
@@ -97,8 +103,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zWP-GW-F3A">
-                                <rect key="frame" x="229" y="509" width="130" height="96"/>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zWP-GW-F3A">
+                                <rect key="frame" x="210" y="553" width="149" height="52"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="restart game" backgroundImage="cardfront">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -115,6 +121,10 @@
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a7C-0i-ESQ">
                                 <rect key="frame" x="16" y="20" width="343" height="431"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="VUP-ZA-971" appends="YES" id="Kh9-ot-0DN"/>
+                                </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0lp-KS-DTd" customClass="CardView">
                                 <rect key="frame" x="16" y="459" width="84" height="109"/>
@@ -150,10 +160,12 @@
                     <connections>
                         <outlet property="deckView" destination="0lp-KS-DTd" id="SE7-gy-i6D"/>
                         <outlet property="gameView" destination="a7C-0i-ESQ" id="PqR-1h-Bkz"/>
+                        <outlet property="pinchCards" destination="VUP-ZA-971" id="6xh-do-aUh"/>
                         <outlet property="scoreLable" destination="UdB-2m-3FC" id="WSK-Ig-uMb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zgl-uh-ewa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pinchGestureRecognizer id="VUP-ZA-971"/>
             </objects>
             <point key="canvasLocation" x="1341.5999999999999" y="-468.21589205397305"/>
         </scene>

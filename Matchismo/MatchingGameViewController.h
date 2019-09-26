@@ -31,4 +31,6 @@ static const float CARDS_ASPECT_RATIO = 0.7;
 
 @property (strong, nonatomic) NSMutableArray *cardViewsOnTable; /// array of CardViews
 
+@property (strong, nonatomic) IBOutlet UIPinchGestureRecognizer *pinchCards;
+
 @end

@@ -87,13 +87,14 @@
   NSArray *frames = [self calculateNewLocationsOfCards]; //array of frames (CGRect)
   [UIView animateWithDuration:ANIMATION_DURATION
                         delay:0
-                      options:UIViewAnimationOptionBeginFromCurrentState&UIViewAnimationOptionCurveEaseInOut
+                      options:UIViewAnimationOptionCurveEaseInOut
                    animations:^{
                      for (Card *card in self.cardsOnTable) {
                        NSUInteger indexInCardsOnTable = [self.cardsOnTable indexOfObject:card];
-                       CardView *cardView = [self.cardViewsOnTable objectAtIndex:indexInCardsOnTable];{}
+                       CardView *cardView = [self.cardViewsOnTable objectAtIndex:indexInCardsOnTable];
                        CGRect destanationFrame = [[frames objectAtIndex:indexInCardsOnTable] CGRectValue];
-                       cardView.frame = destanationFrame;
+                       [cardView setFrame:destanationFrame];
+                       [cardView layoutIfNeeded];
                      }
                    } completion:^(BOOL finished) {
                      for (Card *card in self.cardsOnTable) {
@@ -142,14 +143,16 @@
 
 - (CardView*)viewForCard:(Card*)card withFrame:(CGRect)aRect {
   CardView *cardView = [[CardView alloc] initWithFrame:aRect];
-  UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapCard:)];
+  UITapGestureRecognizer *tapGestureRecognizer =
+      [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapCard:)];
   [cardView addGestureRecognizer:tapGestureRecognizer];
   return cardView;
 }
 
 - (void)getViewForDeckWithFrame:(CGRect)aRect {
   self.deckView.faceUp = NO;
-  UITapGestureRecognizer *tapDeckGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapDeck:)];
+  UITapGestureRecognizer *tapDeckGestureRecognizer =
+      [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapDeck:)];
   [self.deckView addGestureRecognizer:tapDeckGestureRecognizer];
 }
 
@@ -175,7 +178,6 @@
 }
 
 - (IBAction)tapDeck:(UITapGestureRecognizer *)sender {
-//  [self.game dealThreeMoreCards];
   [self addCardsToTable: [self.game dealThreeMoreCards]];
   [self updateUI];
 }
