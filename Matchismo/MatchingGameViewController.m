@@ -56,6 +56,13 @@
 - (void) updateUI {
   [self.scoreLable setText: [NSString stringWithFormat:@"score: %d", (int)self.game.score]];
   self.threeMatchSwitch.userInteractionEnabled = self.game.enableModeChange;
+  for(CardView *cardView in self.cardViewsOnTable){
+    NSUInteger index = [self.cardViewsOnTable indexOfObject:cardView];
+    Card *card = [self.cardsOnTable objectAtIndex:index];
+    if (card.chosen != cardView.faceUp) {
+      [self FlipCardView: cardView];
+    }
+  }
   [self animateRearangeCards];
   [self removeChosenCards];
 }
@@ -166,7 +173,7 @@
   NSUInteger cardIndex = [self.cardViewsOnTable indexOfObject:cardView];
   Card *card = [self.cardsOnTable objectAtIndex:cardIndex];
   [self.game FlipCard: card];
-  [self FlipCardView: cardView];
+//  [self FlipCardView: cardView];
   [self updateUI];
 }
 

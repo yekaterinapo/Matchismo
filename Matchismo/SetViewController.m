@@ -42,15 +42,15 @@
   
 }
 
+// TO DO: move to view
 - (void) FlipCardView: (CardView *) cardView {
-  [UIView animateWithDuration:1
-                        delay:0
-                      options:UIViewAnimationOptionBeginFromCurrentState
-                   animations:^{
-                     cardView.alpha = (cardView.faceUp)?0.6:1;
-                   }
-                   completion:^(BOOL finished) {}];
+  [UIView transitionWithView:cardView
+                    duration:1
+                     options:UIViewAnimationOptionTransitionCrossDissolve
+                  animations:^{cardView.faceUp = !cardView.faceUp;}
+                  completion:^(BOOL finished) {}];
 }
 
 
 @end
+
