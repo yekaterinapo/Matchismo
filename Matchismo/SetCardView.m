@@ -8,7 +8,7 @@
 
 #import "SetCardView.h"
 #import "BasicShapeView.h"
-#import "../model/Grid.h"
+#import "Grid.h"
 
 enum properties {k_color, k_shading, k_shape, k_multiplicity};
 
@@ -22,7 +22,7 @@ enum properties {k_color, k_shading, k_shape, k_multiplicity};
 
 @synthesize faceCardScaleFactor = _faceCardScaleFactor;
 
--(NSArray *)attributes{
+-(NSArray *)attributes {
   if (!_attributes) {
     _attributes = @[@0, @0, @0, @0];
   }
@@ -35,16 +35,17 @@ enum properties {k_color, k_shading, k_shape, k_multiplicity};
   [[self subviews]
    makeObjectsPerformSelector:@selector(removeFromSuperview)];
   
-  int color = [self getPropertyAsInt:k_color];
-  int shape = [self getPropertyAsInt:k_shape];
-  int pattern = [self getPropertyAsInt:k_shading];
-  int multiplicity = [self getPropertyAsInt:k_multiplicity] + 1;
-  
+  NSInteger color = [[self.attributes objectAtIndex:(k_color)] integerValue];
+  NSInteger shape = [[self.attributes objectAtIndex:(k_shape)] integerValue];
+  NSInteger pattern = [[self.attributes objectAtIndex:(k_shading)] integerValue];
+  NSInteger multiplicity = [[self.attributes objectAtIndex:(k_multiplicity)] integerValue] + 1;
+
   for (int i = 0; i < multiplicity; i++) {
     int hight = 0.8*(self.frame.size.height/3);
     int width = 0.8*(self.frame.size.width);
     int x = (self.frame.size.width - width)/2;
-    int y = (i*self.frame.size.height)/(multiplicity) + ((self.frame.size.height)/(multiplicity) - hight)/2;
+    int y = (i*self.frame.size.height)/(multiplicity) +
+        ((self.frame.size.height)/(multiplicity) - hight)/2;
     CGRect frame = CGRectMake(x, y, width, hight);
     BasicShapeView *basicShape = [[BasicShapeView alloc] initWithFrame:frame];
     basicShape.shape = shape;
@@ -60,11 +61,7 @@ enum properties {k_color, k_shading, k_shape, k_multiplicity};
   self.alpha = 0.6;
 }
 
-- (int) getPropertyAsInt: (int) idx {
-  return (int)[(NSNumber *)[self.attributes objectAtIndex:(idx)] integerValue];
-}
-
-- (void) flip {
+- (void)flip {
   [UIView transitionWithView:self
                     duration:1
                      options:UIViewAnimationOptionTransitionCrossDissolve

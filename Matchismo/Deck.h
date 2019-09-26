@@ -11,11 +11,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Deck : NSObject
 
-- (Card *) drawRandomCard;
+- (Card *)drawRandomCard;
 
-- (void) addCardToDeck:(Card*) card;
+- (void)addCardToDeck:(Card*)card;
 
-- (NSUInteger) deckSize;
+- (NSUInteger)deckSize;
 
 @end
 

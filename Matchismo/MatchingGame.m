@@ -25,14 +25,14 @@ static const int STEP_PENALTY = 1;
 @end
 @implementation MatchingGame
 
-- (NSInteger) matchScore: (NSArray*) cards{
+- (NSInteger)matchScore:(NSArray*)cards {
   NSInteger score = 0;
-  for(Card* card1 in cards){
-    for(Card* card2 in cards){
-      if(card1 == card2){
+  for (Card* card1 in cards) {
+    for (Card* card2 in cards) {
+      if (card1 == card2) {
         continue;
       }
-      if([[card1.contents string] isEqualToString: [card2.contents string]]){
+      if ([[card1.contents string] isEqualToString: [card2.contents string]]) {
         score = 1;
         break;
       }
@@ -41,29 +41,29 @@ static const int STEP_PENALTY = 1;
   return score;
 }
 
-- (NSMutableArray*) cards {
+- (NSMutableArray*)cards {
   if (!_cards) {
     _cards = [[NSMutableArray alloc] init];
   }
   return _cards;
 }
 
-- (NSMutableArray*) selectedCards {
+- (NSMutableArray*)selectedCards {
   if (!_selectedCards) {
     _selectedCards = [[NSMutableArray alloc] init];
   }
   return _selectedCards;
 }
 
-- (instancetype) initWithCardCount: (NSUInteger) numOfCards UsingDeck: (Deck*) deck {
+- (instancetype)initWithCardCount:(NSUInteger)numOfCards usingDeck:(Deck*)deck {
   self = [super init];
   if (self) {
     // draw an array of random cards from the deck
-    NSMutableArray *cards = [MatchingGame dealCards: numOfCards UsingDeck: deck];
-    if(!cards){
+    NSMutableArray *cards = [MatchingGame dealCards: numOfCards usingDeck: deck];
+    if (!cards) {
       self = nil;
     }
-    else{
+    else {
       self.deck = deck;
       self.cards = cards;
       self.enableModeChange = YES;
@@ -73,15 +73,15 @@ static const int STEP_PENALTY = 1;
   return self;
 }
 
-+ (NSMutableArray*) dealCards: (NSUInteger) numOfCards UsingDeck: (Deck*) deck {
++ (NSMutableArray*)dealCards:(NSUInteger)numOfCards usingDeck:(Deck*)deck {
   // draw an array of random cards from the deck
   NSMutableArray* cards = [[NSMutableArray alloc] init];
-  for(int i = 1; i<=numOfCards; i++){
+  for (int i = 1; i<=numOfCards; i++) {
     Card * card = [deck drawRandomCard];
-    if(card){
+    if (card) {
       [cards addObject:card];
     }
-    else{
+    else {
       cards = nil;
       break;
     }
@@ -89,24 +89,24 @@ static const int STEP_PENALTY = 1;
   return cards;
 }
 
-- (NSArray *) dealThreeMoreCards {
+- (NSArray *)dealThreeMoreCards {
   NSMutableArray *addedCards = [[NSMutableArray alloc] init];
-  for(int i = 1; i<=3; i++){
+  for (int i = 1; i<=3; i++) {
     Card * card = [self.deck drawRandomCard];
-    if(card){
+    if (card) {
       [addedCards addObject:card];
       [self.cards addObject:card];
     }
-    else{
+    else {
       break;
     }
   }
   return addedCards;
 }
 
-- (void) resetGameWithCardCount: (NSUInteger) numOfCards UsingDeck: (Deck*) deck {
+- (void)resetGameWithCardCount:(NSUInteger)numOfCards usingDeck:(Deck*)deck {
   self.deck = deck;
-  NSMutableArray* cards = [MatchingGame dealCards:numOfCards UsingDeck:deck];
+  NSMutableArray* cards = [MatchingGame dealCards:numOfCards usingDeck:deck];
   self.score = 0;
   self.cards = cards;
   self.currentChosenCount = 0;
@@ -115,16 +115,16 @@ static const int STEP_PENALTY = 1;
   self.selectedCards = [[NSMutableArray alloc] init];
 }
 
-- (Card*) getCardAtIndex: (NSUInteger) index {
+- (Card*)getCardAtIndex:(NSUInteger)index {
   return (index < [self.cards count])? self.cards[index] : nil;
 }
 
-- (void) FlipCard: (Card *) card {
+- (void)flipCard:(Card *)card {
   NSUInteger indexOfCard = [self.cards indexOfObject:card];
-  [self FlipCardAtIndex: indexOfCard];
+  [self flipCardAtIndex: indexOfCard];
 }
 
-- (void) FlipCardAtIndex: (NSUInteger) index {
+- (void)flipCardAtIndex:(NSUInteger)index {
   
   // if we make a move, disable mode change
   self.enableModeChange = NO;
@@ -162,7 +162,7 @@ static const int STEP_PENALTY = 1;
   
 }
 
-- (void) handleMatch {
+- (void)handleMatch {
   for(Card* card in self.selectedCards){
     card.chosen = NO;
     card.matched = YES;
@@ -170,8 +170,8 @@ static const int STEP_PENALTY = 1;
   [self.selectedCards removeAllObjects];
 }
 
-- (void) handleMismatch: (Card* ) currentCard {
-  for(Card* card in self.selectedCards){
+- (void)handleMismatch:(Card* )currentCard {
+  for (Card* card in self.selectedCards) {
     card.chosen = NO;
   }
   [self.selectedCards removeAllObjects];
@@ -179,9 +179,9 @@ static const int STEP_PENALTY = 1;
   [self.selectedCards addObject:currentCard];
 }
 
-+(NSMutableAttributedString*)getStringOfCards: (NSMutableArray*) cards{
++ (NSMutableAttributedString*)getStringOfCards:(NSMutableArray*)cards {
   NSMutableAttributedString* cardString = [[NSMutableAttributedString alloc] init];
-  for(Card *card in cards){
+  for (Card *card in cards) {
     [cardString appendAttributedString:card.contents];
     [cardString appendAttributedString:[[NSAttributedString alloc] initWithString:@"   "]];
   }

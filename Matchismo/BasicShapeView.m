@@ -10,33 +10,29 @@
 
 @implementation BasicShapeView
 
-- (void) setColor: (int) color {
+- (void) setColor: (NSInteger) color {
   _color = color;
   [self setNeedsDisplay];
 }
 
-- (void) setPattern: (int) pattern {
+- (void) setPattern: (NSInteger) pattern {
   _pattern = pattern;
   [self setNeedsDisplay];
-}
-
-+ (NSArray *) ShapeColors {
-  return @[[UIColor redColor], [UIColor greenColor], [UIColor blueColor]];
 }
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
   UIBezierPath *outline = [self getOutlineOfShape];
-  UIColor* color = [[BasicShapeView ShapeColors][self.color] colorWithAlphaComponent:[[BasicShapeView ShapeAlphas][self.pattern] floatValue]];
+  UIColor* color = [[BasicShapeView ShapeColors][self.color] colorWithAlphaComponent:
+                    [[BasicShapeView ShapeAlphas][self.pattern] floatValue]];
   [color setFill];
   [[UIColor blackColor ] setStroke];
-//  outline.lineWidth = ((NSNumber *)[BasicShapeView ShapeBoarderThiknesses][self.pattern]).integerValue;
   [outline fill];
   [outline stroke];
 }
 
-- (UIBezierPath*) getOutlineOfShape {
+- (UIBezierPath*)getOutlineOfShape {
   switch (self.shape) {
     case 1:
       return [self outlineOfOVal];
@@ -50,13 +46,13 @@
   }
 }
 
-- (UIBezierPath*) outlineOfOVal {
+- (UIBezierPath*)outlineOfOVal {
   UIBezierPath *oval = [UIBezierPath bezierPathWithRoundedRect:self.bounds
                                                   cornerRadius:self.bounds.size.width];
   return oval;
 }
 
-- (UIBezierPath*) outlineOfDiamond {
+- (UIBezierPath*)outlineOfDiamond {
   UIBezierPath *diamond = [[UIBezierPath alloc] init];
   [diamond moveToPoint:CGPointMake(self.bounds.size.width/2, 0)];
   [diamond addLineToPoint :CGPointMake(self.bounds.size.width,self.bounds.size.height/2)];
@@ -68,8 +64,8 @@
 
 #define SYMBOL_WIDTH_RATIO 1
 #define SYMBOL_HEIGHT_RATIO 0.5
-//- (UIBezierPath *) drawSquiggleAtPoint:(CGPoint)point {
-- (UIBezierPath *) outlineOfSquiggle{
+
+- (UIBezierPath *)outlineOfSquiggle {
   CGSize size = CGSizeMake(self.bounds.size.width * SYMBOL_WIDTH_RATIO,
                            self.bounds.size.height * SYMBOL_HEIGHT_RATIO);
   UIBezierPath *path = [[UIBezierPath alloc] init];
@@ -87,17 +83,16 @@
   [path addCurveToPoint:CGPointMake(104, 15) controlPoint1:CGPointMake(95.3, 10)
           controlPoint2:CGPointMake(100.9, 6.9)];
   [path applyTransform:CGAffineTransformMakeScale(0.9524*size.width/100, 0.9524*size.height/50)];
-//  [path applyTransform:CGAffineTransformMakeTranslation(point.x - size.width/2 - 3 * size.width /100, point.y - size.height/2 - 8 * size.height/50)];
   return path;
 }
 
-- (void) setup {
+- (void)setup {
   self.backgroundColor = nil;
   self.opaque = NO;
   self.contentMode = UIViewContentModeRedraw;
 }
 
-- (void) awakeFromNib {
+- (void)awakeFromNib {
   [super awakeFromNib];
   [self setup];
 }
@@ -108,9 +103,12 @@
   return self;
 }
 
-+ (NSArray *) ShapeAlphas {
++ (NSArray *)ShapeAlphas {
   return @[@0.1, @0.7, @1.];
 }
 
++ (NSArray *) ShapeColors {
+  return @[[UIColor redColor], [UIColor greenColor], [UIColor blueColor]];
+}
 
 @end

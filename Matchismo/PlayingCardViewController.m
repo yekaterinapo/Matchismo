@@ -7,46 +7,35 @@
 //
 
 #import "PlayingCardViewController.h"
-#import "views/PlayingCardView.h"
-#import "model/cards/PlayingCard.h"
+#import "PlayingCardView.h"
+#import "PlayingCard.h"
 
 @implementation PlayingCardViewController
 
 @synthesize game = _game;
 
-- (MatchingGame*) game {
+- (MatchingGame*)game {
   if (!_game) {
-    _game = [[PlayingCardMatchingGame alloc] initWithCardCount:CARDS_IN_GAME UsingDeck:[self createDeck]];
+    _game = [[PlayingCardMatchingGame alloc] initWithCardCount:CARDS_IN_GAME usingDeck:[self createDeck]];
   }
   return _game;
 }
 
-- (Deck*) createDeck {
+- (Deck*)createDeck {
   return [[PlayDeck alloc] init];
 }
 
-- (CardView*) ViewForCard: (Card*) card WithFrame: (CGRect)aRect {
-  
+- (CardView*)viewForCard:(Card*)card withFrame:(CGRect)aRect {
   PlayingCard *playingCard = (PlayingCard *)card;
   PlayingCardView *playingCardView = [[PlayingCardView alloc] initWithFrame:aRect];
-
+  
   playingCardView.suit = playingCard.suit;
   playingCardView.rank = playingCard.rank;
   playingCardView.faceUp = playingCard.chosen;
   
   UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapCard:)];
   [playingCardView addGestureRecognizer:tapGestureRecognizer];
-  return (CardView *)playingCardView;
-  
+  return (CardView *)playingCardView;  
 }
-
-//- (void) FlipCardView: (CardView *) cardView {
-//  UIViewAnimationOptions TransitionFlip = (cardView.faceUp)? UIViewAnimationOptionTransitionFlipFromLeft:UIViewAnimationOptionTransitionFlipFromRight;
-//  [UIView transitionWithView:cardView
-//                    duration:1
-//                     options:TransitionFlip
-//                  animations:^{cardView.faceUp = !cardView.faceUp;}
-//                  completion:^(BOOL finished) {}];
-//}
 
 @end

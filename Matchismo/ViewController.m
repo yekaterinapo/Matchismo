@@ -7,10 +7,10 @@
 //
 
 #import "ViewController.h"
-#import "views/PlayingCardView.h"
-#import "model/decks/PlayDeck.h"
-#import "model/cards/PlayingCard.h"
-#import "views/BasicShapeView.h"
+#import "PlayingCardView.h"
+#import "PlayDeck.h"
+#import "PlayingCard.h"
+#import "BasicShapeView.h"
 
 @interface ViewController ()
 
@@ -20,15 +20,11 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
   [super viewDidLoad];
-  self.basicShape.color = [UIColor greenColor];
+  self.basicShape.color = 1;
   self.basicShape.shape = 1;
   self.basicShape.pattern = 2;
-  
-  // Do any additional setup after loading the view, typically from a nib.
-  //[self.playingCardView addGestureRecognizer:[[UIPinchGestureRecognizer alloc] initWithTarget:self.playingCardView action:@selector(pinch:)]];
 }
 
 @end

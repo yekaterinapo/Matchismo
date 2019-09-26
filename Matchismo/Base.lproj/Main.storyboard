@@ -157,46 +157,6 @@
             </objects>
             <point key="canvasLocation" x="1341.5999999999999" y="-468.21589205397305"/>
         </scene>
-        <!--Matching Game-->
-        <scene sceneID="nSz-7K-W9f">
-            <objects>
-                <viewController id="bXf-EO-MWy" customClass="ViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Fja-c9-Gqd">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sam-bT-AYh" customClass="BasicShapeView">
-                                <rect key="frame" x="90" y="187" width="173" height="252"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="dFZ-ah-Oy3" appends="YES" id="ORQ-9U-PZF"/>
-                                </connections>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.56031829119999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="jGe-sb-pB2"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Matching Game" id="Ep1-GN-ioQ">
-                        <barButtonItem key="rightBarButtonItem" title="history" id="J4G-Mn-XS7"/>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="basicShape" destination="Sam-bT-AYh" id="PXO-Qe-LJ6"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JKT-pq-8ed" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="right" id="bED-Lm-lyv"/>
-                <swipeGestureRecognizer direction="right" id="DLk-aL-yhP"/>
-                <swipeGestureRecognizer direction="right" id="uB5-C5-5l6"/>
-                <swipeGestureRecognizer direction="right" id="dFZ-ah-Oy3">
-                    <connections>
-                        <action selector="swipe:" destination="bXf-EO-MWy" id="age-Mk-EHu"/>
-                    </connections>
-                </swipeGestureRecognizer>
-            </objects>
-            <point key="canvasLocation" x="1318" y="1104"/>
-        </scene>
     </scenes>
     <resources>
         <image name="cardfront" width="64" height="96"/>

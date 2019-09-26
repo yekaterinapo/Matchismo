@@ -20,24 +20,21 @@
 
 @synthesize faceCardScaleFactor = _faceCardScaleFactor;
 
-- (CGFloat)faceCardScaleFactor
-{
+- (CGFloat)faceCardScaleFactor {
   if (!_faceCardScaleFactor) _faceCardScaleFactor = DEFAULT_FACE_CARD_SCALE_FACTOR;
   return _faceCardScaleFactor;
 }
 
-- (void)setFaceCardScaleFactor:(CGFloat)faceCardScaleFactor
-{
+- (void)setFaceCardScaleFactor:(CGFloat)faceCardScaleFactor {
   _faceCardScaleFactor = faceCardScaleFactor;
   [self setNeedsDisplay];
 }
 
-- (void)setFaceUp:(BOOL)faceUp
-{
+- (void)setFaceUp:(BOOL)faceUp {
   _faceUp = faceUp;
   [self setNeedsDisplay];
 }
-- (void) flip {
+- (void)flip {
   self.faceUp = !self.faceUp;
 }
 #pragma mark - Drawing
@@ -48,11 +45,9 @@
 - (CGFloat)cornerScaleFactor { return self.bounds.size.height / CORNER_FONT_STANDARD_HEIGHT; }
 - (CGFloat)cornerRadius { return CORNER_RADIUS * [self cornerScaleFactor]; }
 
-
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
+- (void)drawRect:(CGRect)rect {
   // Drawing code
   [self drawEmptyCard];
   if (self.faceUp) {
@@ -86,21 +81,18 @@
 
 #pragma mark - Initialization
 
-- (void)setup
-{
+- (void)setup {
   self.backgroundColor = nil;
   self.opaque = NO;
   self.contentMode = UIViewContentModeRedraw;
 }
 
-- (void)awakeFromNib
-{
+- (void)awakeFromNib {
   [super awakeFromNib];
   [self setup];
 }
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
   self = [super initWithFrame:frame];
   [self setup];
   return self;

@@ -167,8 +167,8 @@
 				807ACFA5231D3D8E0054E614 /* LaunchScreen.storyboard */,
 				807ACFA8231D3D8E0054E614 /* Info.plist */,
 				807ACFA9231D3D8E0054E614 /* main.m */,
-				80A848B923339C1C00001FBF /* views */,
-				807ACFDF232004740054E614 /* model */,
+				80BB045C233CADD600467075 /* views */,
+				80BB045E233CAEF700467075 /* model */,
 			);
 			path = Matchismo;
 			sourceTree = "<group>";
@@ -191,70 +191,70 @@
 			path = MatchismoUITests;
 			sourceTree = "<group>";
 		};
-		807ACFDF232004740054E614 /* model */ = {
+		80BB045C233CADD600467075 /* views */ = {
 			isa = PBXGroup;
 			children = (
-				808880F6232E4BAB001CDDAF /* games */,
-				808880F4232E4B6D001CDDAF /* decks */,
-				808880F3232E4B4D001CDDAF /* cards */,
-				80BB0457233898F600467075 /* Grid.h */,
-				80BB0458233898F600467075 /* Grid.m */,
-			);
-			path = model;
-			sourceTree = "<group>";
-		};
-		808880F3232E4B4D001CDDAF /* cards */ = {
-			isa = PBXGroup;
-			children = (
-				808880EA2328EB0F001CDDAF /* SetCard.h */,
-				807ACFD5231D54C50054E614 /* PlayingCard.h */,
-				807ACFCC231D48250054E614 /* Card.h */,
-				807ACFCD231D48250054E614 /* Card.m */,
-				807ACFD6231D54C50054E614 /* PlayingCard.m */,
-				808880EB2328EB0F001CDDAF /* SetCard.m */,
-			);
-			path = cards;
-			sourceTree = "<group>";
-		};
-		808880F4232E4B6D001CDDAF /* decks */ = {
-			isa = PBXGroup;
-			children = (
-				808880F023291D09001CDDAF /* SetDeck.h */,
-				808880F123291D09001CDDAF /* SetDeck.m */,
-				807ACFD0231D4C160054E614 /* Deck.m */,
-				807ACFCF231D4C160054E614 /* Deck.h */,
-				807ACFD8231D6C1C0054E614 /* PlayDeck.h */,
-				807ACFD9231D6C1C0054E614 /* PlayDeck.m */,
-			);
-			path = decks;
-			sourceTree = "<group>";
-		};
-		808880F6232E4BAB001CDDAF /* games */ = {
-			isa = PBXGroup;
-			children = (
-				808880F7232E4CB9001CDDAF /* setGame.h */,
-				808880F8232E4CB9001CDDAF /* setGame.m */,
-				807ACFDB231FC46B0054E614 /* MatchingGame.h */,
-				808880ED2328EBE9001CDDAF /* PlayingCardMatchingGame.h */,
-				808880EE2328EBE9001CDDAF /* PlayingCardMatchingGame.m */,
-				807ACFDC231FC46B0054E614 /* MatchingGame.m */,
-			);
-			path = games;
-			sourceTree = "<group>";
-		};
-		80A848B923339C1C00001FBF /* views */ = {
-			isa = PBXGroup;
-			children = (
+				80A848C723339E5000001FBF /* CardView.h */,
+				80A848C823339E5000001FBF /* CardView.m */,
 				80A848BB23339C2600001FBF /* PlayingCardView.h */,
 				80A848BA23339C2600001FBF /* PlayingCardView.m */,
 				80A848C423339DC000001FBF /* SetCardView.h */,
 				80A848C523339DC000001FBF /* SetCardView.m */,
 				80A848D02333AA8A00001FBF /* BasicShapeView.h */,
 				80A848D12333AA8A00001FBF /* BasicShapeView.m */,
-				80A848C723339E5000001FBF /* CardView.h */,
-				80A848C823339E5000001FBF /* CardView.m */,
 			);
-			path = views;
+			name = views;
+			sourceTree = "<group>";
+		};
+		80BB045E233CAEF700467075 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				80BB0460233CAF7A00467075 /* decks */,
+				80BB0461233CB01D00467075 /* cards */,
+				80BB045F233CAF1600467075 /* games */,
+				80BB0457233898F600467075 /* Grid.h */,
+				80BB0458233898F600467075 /* Grid.m */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		80BB045F233CAF1600467075 /* games */ = {
+			isa = PBXGroup;
+			children = (
+				808880F7232E4CB9001CDDAF /* setGame.h */,
+				808880F8232E4CB9001CDDAF /* setGame.m */,
+				808880ED2328EBE9001CDDAF /* PlayingCardMatchingGame.h */,
+				808880EE2328EBE9001CDDAF /* PlayingCardMatchingGame.m */,
+				807ACFDB231FC46B0054E614 /* MatchingGame.h */,
+				807ACFDC231FC46B0054E614 /* MatchingGame.m */,
+			);
+			name = games;
+			sourceTree = "<group>";
+		};
+		80BB0460233CAF7A00467075 /* decks */ = {
+			isa = PBXGroup;
+			children = (
+				808880F023291D09001CDDAF /* SetDeck.h */,
+				808880F123291D09001CDDAF /* SetDeck.m */,
+				807ACFCF231D4C160054E614 /* Deck.h */,
+				807ACFD0231D4C160054E614 /* Deck.m */,
+				807ACFD8231D6C1C0054E614 /* PlayDeck.h */,
+				807ACFD9231D6C1C0054E614 /* PlayDeck.m */,
+			);
+			name = decks;
+			sourceTree = "<group>";
+		};
+		80BB0461233CB01D00467075 /* cards */ = {
+			isa = PBXGroup;
+			children = (
+				807ACFCC231D48250054E614 /* Card.h */,
+				807ACFCD231D48250054E614 /* Card.m */,
+				808880EA2328EB0F001CDDAF /* SetCard.h */,
+				808880EB2328EB0F001CDDAF /* SetCard.m */,
+				807ACFD5231D54C50054E614 /* PlayingCard.h */,
+				807ACFD6231D54C50054E614 /* PlayingCard.m */,
+			);
+			name = cards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

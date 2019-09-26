@@ -25,19 +25,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) Deck *deck;
 
 // designated initializer
-- (instancetype) initWithCardCount: (NSUInteger) numOfCards UsingDeck: (Deck*) deck;
+- (instancetype)initWithCardCount:(NSUInteger)numOfCards usingDeck:(Deck*)deck;
 
-- (Card*) getCardAtIndex: (NSUInteger) index;
+- (Card*)getCardAtIndex:(NSUInteger)index;
 
-- (void) FlipCardAtIndex: (NSUInteger) index;
+- (void)flipCardAtIndex:(NSUInteger)index;
 
-- (void) resetGameWithCardCount: (NSUInteger) numOfCards UsingDeck: (Deck*) deck;
+- (void)resetGameWithCardCount:(NSUInteger)numOfCards usingDeck:(Deck*)deck;
 
-- (NSInteger) matchScore: (NSArray*) cards;
+- (NSInteger)matchScore:(NSArray*)cards;
 
-- (NSArray *) dealThreeMoreCards;
+- (NSArray *)dealThreeMoreCards;
 
-- (void) FlipCard: (Card *) card ;
+- (void)flipCard:(Card *)card;
 
 @end
 

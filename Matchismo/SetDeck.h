@@ -12,7 +12,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SetDeck : Deck
--(instancetype)initWithAttributeCount:(NSArray*) ShapeOfattributes;
+
+-(instancetype)init;
+
 @end
 
 NS_ASSUME_NONNULL_END

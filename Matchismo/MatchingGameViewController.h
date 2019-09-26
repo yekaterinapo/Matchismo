@@ -8,24 +8,22 @@
 
 #import <UIKit/UIKit.h>
 #import "MatchingGame.h"
-#import "views/CardView.h"
+#import "CardView.h"
 
 static const int CARDS_IN_GAME = 12;
 static const float CARDS_ASPECT_RATIO = 0.7;
 
 @interface MatchingGameViewController : UIViewController
 
-- (void) updateUI;
+- (void)updateUI;
 
-- (MatchingGame*) game;
+- (MatchingGame*)game;
 
-- (Deck*) createDeck; // overide with your deck
+- (Deck*)createDeck; // overide with your deck
 
-- (CardView *) ViewForCard: (Card*) card WithFrame: (CGRect)aRect; // overide to return view of your cards
+- (CardView *)viewForCard:(Card*)card withFrame:(CGRect)aRect; // overide to return view of your cards
 
-- (void) FlipCardView: (CardView *) cardView;
-
-- (IBAction)tapCard:(UITapGestureRecognizer *)sender ;
+- (IBAction)tapCard:(UITapGestureRecognizer *)sender;
 
 @property (weak, nonatomic) IBOutlet UIView *gameView;
 

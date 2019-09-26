@@ -7,28 +7,27 @@
 //
 
 #import "SetViewController.h"
-#import "./model/cards/Card.h"
-#import "./model/decks/SetDeck.h"
-#import "./model/games/setGame.h"
-#import "./views/SetCardView.h"
+#import "Card.h"
+#import "SetDeck.h"
+#import "setGame.h"
+#import "SetCardView.h"
 
 @implementation SetViewController
 
 @synthesize game = _game;
 
-- (MatchingGame*) game {
+- (MatchingGame*)game {
   if (!_game) {
-    _game = [[setGame alloc] initWithCardCount:CARDS_IN_GAME UsingDeck:[self createDeck]];
+    _game = [[setGame alloc] initWithCardCount:CARDS_IN_GAME usingDeck:[self createDeck]];
   }
   return _game;
 }
 
-- (Deck*) createDeck {
-  NSArray *ShapeOfattributes = @[@3,@3,@3,@3];
-  return [[SetDeck alloc] initWithAttributeCount:ShapeOfattributes];
+- (Deck*)createDeck {
+  return [[SetDeck alloc] init];
 }
 
-- (CardView*) ViewForCard: (Card*) card WithFrame: (CGRect)aRect {
+- (CardView*)viewForCard:(Card*)card withFrame:(CGRect)aRect {
   
   SetCard *setCard = (SetCard *)card;
   SetCardView *setCardView = [[SetCardView alloc] initWithFrame:aRect];
@@ -41,16 +40,4 @@
   return (CardView *)setCardView;
   
 }
-
-// TO DO: move to view?
-- (void) FlipCardView: (CardView *) cardView {
-  [UIView transitionWithView:cardView
-                    duration:1
-                     options:UIViewAnimationOptionTransitionCrossDissolve
-                  animations:^{cardView.faceUp = !cardView.faceUp;}
-                  completion:^(BOOL finished) {}];
-}
-
-
 @end
-

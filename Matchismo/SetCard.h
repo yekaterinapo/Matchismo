@@ -12,15 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SetCard : Card
 
--(int)getPropertyAsInt:(NSUInteger) idx;
+-(NSInteger)propertyAtIndex:(NSUInteger)index;
 
--(instancetype)initWithAtributes: (NSArray*) attributes;
-
-
-//@property (nonatomic) NSUInteger *numberOfShapes;
-//@property (nonatomic) NSInteger *shape;
-//@property (nonatomic) NSInteger *shading;
-//@property (nonatomic) NSInteger *color;
+-(instancetype)initWithAtributes:(NSArray*)attributes;
 
 @property (strong, nonatomic) NSArray *attributes; // array of NSUint
 

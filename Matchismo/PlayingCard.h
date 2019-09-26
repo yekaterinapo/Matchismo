@@ -14,9 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSUInteger) maxRank;
 
-+ (NSArray *) SuitStrings;
++ (NSArray *) suitStrings;
 
-- (int) MatcheScore: (NSArray*) otherCards;
+- (int) matcheScore: (NSArray*) otherCards;
 
 @property (nonatomic) NSUInteger rank;
 

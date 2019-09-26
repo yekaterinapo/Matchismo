@@ -7,7 +7,7 @@
 //
 
 #import "MatchingGameViewController.h"
-#import "model/Grid.h"
+#import "Grid.h"
 
 @interface MatchingGameViewController ()
 
@@ -29,10 +29,10 @@
   [self startNewGame];
 }
 
-- (void) startNewGame {
+- (void)startNewGame {
   [self removeCardsFromTable:[self.cardsOnTable copy]]; //copy because selector operates on cardsOnTable
   Deck* deck = [self createDeck];
-  [self.game resetGameWithCardCount: CARDS_IN_GAME UsingDeck: deck];
+  [self.game resetGameWithCardCount: CARDS_IN_GAME usingDeck: deck];
   [self addCardsToTable:self.game.cards];
   // set size of deck view
   CGRect deckFrame = CGRectMake(self.deckView.frame.origin.x, self.deckView.frame.origin.y,
@@ -41,7 +41,7 @@
   [self.view setNeedsDisplay];
 }
 
-- (void)removeCardsFromTable:(NSArray *) cardsToRemove {
+- (void)removeCardsFromTable:(NSArray *)cardsToRemove {
   for (Card *card in cardsToRemove) {
     NSUInteger indexInCardsOnTable = [self.cardsOnTable indexOfObject:card];
     [self.cardsOnTable removeObject:card];
@@ -53,14 +53,13 @@
 
 #define ANIMATION_DURATION 3
 
-- (void) updateUI {
+- (void)updateUI {
   [self.scoreLable setText: [NSString stringWithFormat:@"score: %d", (int)self.game.score]];
   self.threeMatchSwitch.userInteractionEnabled = self.game.enableModeChange;
-  for(CardView *cardView in self.cardViewsOnTable){
+  for (CardView *cardView in self.cardViewsOnTable) {
     NSUInteger index = [self.cardViewsOnTable indexOfObject:cardView];
     Card *card = [self.cardsOnTable objectAtIndex:index];
     if (card.chosen != cardView.faceUp) {
-//      [self FlipCardView: cardView];
       [cardView flip];
     }
   }
@@ -84,7 +83,7 @@
   [self.cardViewsOnTable removeObjectsInArray: viewsOfChosenCards];
 }
 
-- (void) animateRearangeCards {
+- (void)animateRearangeCards {
   NSArray *frames = [self calculateNewLocationsOfCards]; //array of frames (CGRect)
   [UIView animateWithDuration:ANIMATION_DURATION
                         delay:0
@@ -107,7 +106,7 @@
                    }];
 }
 
-- (NSArray *) calculateNewLocationsOfCards {
+- (NSArray *)calculateNewLocationsOfCards {
 
   self.grid.minimumNumberOfCells = [self unmatchedCardsCount];
 
@@ -131,7 +130,7 @@
   return frames;
 }
 
-- (NSUInteger) unmatchedCardsCount {
+- (NSUInteger)unmatchedCardsCount {
   NSUInteger minimumNumberOfCells = 0;
   for (Card *card in self.cardsOnTable) {
     if (!card.matched) {
@@ -141,16 +140,14 @@
   return minimumNumberOfCells;
 }
 
-// rename or split because this function also adds behaviour to cardview
-- (CardView*) ViewForCard: (Card*) card WithFrame: (CGRect)aRect {
+- (CardView*)viewForCard:(Card*)card withFrame:(CGRect)aRect {
   CardView *cardView = [[CardView alloc] initWithFrame:aRect];
   UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapCard:)];
   [cardView addGestureRecognizer:tapGestureRecognizer];
   return cardView;
 }
 
-// rename or split because this function also adds behaviour to deckview
-- (void) getViewForDeckWithFrame: (CGRect)aRect {
+- (void)getViewForDeckWithFrame:(CGRect)aRect {
   self.deckView.faceUp = NO;
   UITapGestureRecognizer *tapDeckGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapDeck:)];
   [self.deckView addGestureRecognizer:tapDeckGestureRecognizer];
@@ -158,13 +155,13 @@
 
 #pragma mark - actions
 
-- (IBAction) threeMatchSwitch:(id)sender {
+- (IBAction)threeMatchSwitch:(id)sender {
   BOOL isOn = [sender isOn];
   self.game.matchSize = (isOn)? 3:2;
   [self updateUI];
 }
 
-- (IBAction) touchResetButton:(id) sender {
+- (IBAction)touchResetButton:(id)sender {
   [self startNewGame];
   [self updateUI];
 }
@@ -173,23 +170,20 @@
   CardView *cardView = (CardView *)sender.view;
   NSUInteger cardIndex = [self.cardViewsOnTable indexOfObject:cardView];
   Card *card = [self.cardsOnTable objectAtIndex:cardIndex];
-  [self.game FlipCard: card];
-//  [self FlipCardView: cardView];
+  [self.game flipCard: card];
   [self updateUI];
 }
 
-//- (void) FlipCardView: (CardView *) cardView { }
-//
-//- (IBAction)tapDeck:(UITapGestureRecognizer *)sender {
-////  [self.game dealThreeMoreCards];
-//  [self addCardsToTable: [self.game dealThreeMoreCards]];
-//  [self updateUI];
-//}
+- (IBAction)tapDeck:(UITapGestureRecognizer *)sender {
+//  [self.game dealThreeMoreCards];
+  [self addCardsToTable: [self.game dealThreeMoreCards]];
+  [self updateUI];
+}
 
-- (void) addCardsToTable:(NSArray *) cardsToAdd {
+- (void)addCardsToTable:(NSArray *)cardsToAdd {
   for (Card *card in cardsToAdd) {
     [self.cardsOnTable addObject:card];
-    CardView* cardView = [self ViewForCard:card WithFrame:self.deckView.frame];
+    CardView* cardView = [self viewForCard:card withFrame:self.deckView.frame];
     [self.cardViewsOnTable addObject:cardView];
     [self.gameView addSubview:cardView];
   }
@@ -215,7 +209,7 @@
   return _grid;
 }
 
-- (Deck*) createDeck { //abstruct
+- (Deck*)createDeck { //abstruct
   return nil;
 }
 
@@ -226,9 +220,9 @@
   return _cardsOnTable;
 }
 
-- (MatchingGame*) game {
+- (MatchingGame*)game {
   if (!_game) {
-    _game = [[MatchingGame alloc] initWithCardCount:CARDS_IN_GAME UsingDeck:[self createDeck]];
+    _game = [[MatchingGame alloc] initWithCardCount:CARDS_IN_GAME usingDeck:[self createDeck]];
   }
   return _game;
 }

@@ -7,14 +7,14 @@
 //
 
 #import "PlayingCardMatchingGame.h"
-#import "../cards/PlayingCard.h"
+#import "PlayingCard.h"
 
 static const int MISMATCH_PENALTY = 2;
 static const int MATCH_BONUS = 4;
 
 @implementation PlayingCardMatchingGame
 
-- (NSInteger) matchScore: (NSArray*) cards {
+- (NSInteger)matchScore:(NSArray*)cards {
   NSInteger score = 0;
   for (PlayingCard* card1 in cards) {
     for (PlayingCard* card2 in cards) {
@@ -22,7 +22,7 @@ static const int MATCH_BONUS = 4;
         continue;
       }
       else {
-        score += MATCH_BONUS*[card1 MatcheScore:@[card2]];
+        score += MATCH_BONUS*[card1 matcheScore:@[card2]];
       }
     }
   }

@@ -11,10 +11,10 @@
 
 @implementation PlayDeck
 
-- (instancetype) init {
+- (instancetype)init {
   self = [super init];
   if (self) {
-    for (NSString* suit in [PlayingCard SuitStrings]) {
+    for (NSString* suit in [PlayingCard suitStrings]) {
       for (NSUInteger rank=1; rank<=[PlayingCard maxRank]; rank++) {
         PlayingCard *card = [[PlayingCard alloc] init];
         card.rank = rank;

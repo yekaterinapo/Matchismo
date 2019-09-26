@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Card : NSObject
 
-- (int) MatcheScore: (NSArray*) otherCards;
+- (int)matcheScore:(NSArray*)otherCards;
 
 @property (strong, nonatomic) NSAttributedString* contents;
 

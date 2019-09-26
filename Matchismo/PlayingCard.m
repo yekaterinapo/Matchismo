@@ -13,48 +13,48 @@
 @synthesize rank = _rank;
 @synthesize suit = _suit;
 
-- (NSAttributedString *) contents {
-  return [[NSAttributedString alloc] initWithString: [self.suit stringByAppendingString: [PlayingCard RankStrings][self.rank]] ];
+- (NSAttributedString *)contents {
+  return [[NSAttributedString alloc] initWithString: [self.suit stringByAppendingString: [PlayingCard rankStrings][self.rank]] ];
 }
 
-+ (NSArray *) RankStrings {
++ (NSArray *)rankStrings {
   return @[@"?", @"A", @"2", @"3", @"4", @"5", @"6", @"7",
            @"8", @"9", @"J", @"Q", @"K"];
   //return @[@"?", @"A"];
   
 }
 
-+ (NSArray *) SuitStrings {
++ (NSArray *)suitStrings {
   return @[@"♠", @"♥", @"♦", @"♣"];
 }
 
-- (void) setRank:(NSUInteger) rank {
+- (void)setRank:(NSUInteger)rank {
   if (rank>0 && rank <= [PlayingCard maxRank]) {
     _rank = rank;
-    self.contents = [[NSAttributedString alloc] initWithString: [[PlayingCard RankStrings][rank] stringByAppendingString: self.suit]];
+    self.contents = [[NSAttributedString alloc] initWithString: [[PlayingCard rankStrings][rank] stringByAppendingString: self.suit]];
   }
 }
 
-- (NSString*) suit {
+- (NSString*)suit {
   if (!_suit) {
     _suit = @"";
   }
   return _suit;
 }
 
-- (void) setSuit: (NSString*) suit {
-  if ([[PlayingCard SuitStrings] containsObject:suit]) {
+- (void)setSuit:(NSString*)suit {
+  if ([[PlayingCard suitStrings] containsObject:suit]) {
     _suit = suit;
-    NSString *s = [[PlayingCard RankStrings][self.rank] stringByAppendingString: suit];
+    NSString *s = [[PlayingCard rankStrings][self.rank] stringByAppendingString: suit];
     self.contents =[[NSAttributedString alloc] initWithString:s];
   }
 }
 
-+ (NSUInteger) maxRank {
-  return [[PlayingCard RankStrings] count] - 1;
++ (NSUInteger)maxRank {
+  return [[PlayingCard rankStrings] count] - 1;
 }
 
-- (int) MatcheScore: (NSArray*) otherCards {
+- (int)matcheScore:(NSArray*)otherCards {
   
   for (PlayingCard* otherCard in otherCards) {
     if ([otherCard.suit isEqualToString:self.suit]) {

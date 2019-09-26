@@ -16,7 +16,7 @@
 @end
 
 @implementation Deck
-- (Card *) drawRandomCard {
+- (Card *)drawRandomCard {
   Card * card = nil;
   NSUInteger deck_size = [self.cards count];
   if (deck_size != 0) {
@@ -27,18 +27,18 @@
   return card;
 }
 
-- (void) addCardToDeck: (Card*) card {
+- (void)addCardToDeck:(Card*)card {
   [self.cards insertObject:card atIndex:0];
 }
 
-- (NSMutableArray *) cards {
+- (NSMutableArray *)cards {
   if (!_cards) {
     _cards = [[NSMutableArray alloc] init];
   }
   return _cards;
 }
 
-- (NSUInteger) deckSize {
+- (NSUInteger)deckSize {
   return [self.cards count];
 }
 

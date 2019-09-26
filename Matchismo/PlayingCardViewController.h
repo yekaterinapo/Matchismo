@@ -7,8 +7,8 @@
 //
 
 #import "MatchingGameViewController.h"
-#import "model/games/PlayingCardMatchingGame.h"
-#import "model/decks/PlayDeck.h"
+#import "PlayingCardMatchingGame.h"
+#import "PlayDeck.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

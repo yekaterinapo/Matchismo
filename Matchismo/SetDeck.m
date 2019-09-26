@@ -10,15 +10,16 @@
 
 @implementation SetDeck
 
-- (instancetype) initWithAttributeCount: (NSArray*) ShapeOfattributes {
+- (instancetype)init {
   self = [super init];
   if (self) {
-    [self createDeckRec:ShapeOfattributes WithPrefix:[[NSArray alloc] init]];
+    NSArray *shapeOfattributes = @[@3,@3,@3,@3];
+    [self createDeckRecursive:shapeOfattributes withPrefix:[[NSArray alloc] init]];
   }
   return self;
 }
 
-- (void) createDeckRec: (NSArray*) ShapeOfAttributes WithPrefix: (NSArray*) attributes {
+- (void)createDeckRecursive:(NSArray*)ShapeOfAttributes withPrefix:(NSArray*)attributes {
   NSUInteger numOfAttributes = (ShapeOfAttributes)?[ShapeOfAttributes count]:0;
   if (numOfAttributes == 0) {
     SetCard *card = [[SetCard alloc] initWithAtributes: attributes];
@@ -29,7 +30,7 @@
   ShapeOfAttributes = [ShapeOfAttributes subarrayWithRange:NSMakeRange(0, numOfAttributes-1)];
   for (int attributeOption = 0; attributeOption < attributeOptionsCount.intValue; attributeOption++) {
     attributes = [attributes arrayByAddingObject: @(attributeOption)];
-    [self createDeckRec:ShapeOfAttributes WithPrefix:attributes];
+    [self createDeckRecursive:ShapeOfAttributes withPrefix:attributes];
     attributes = [attributes subarrayWithRange: NSMakeRange(0, ([attributes count] -1))];
   }
 }
