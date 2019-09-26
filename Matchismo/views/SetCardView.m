@@ -64,5 +64,13 @@ enum properties {k_color, k_shading, k_shape, k_multiplicity};
   return (int)[(NSNumber *)[self.attributes objectAtIndex:(idx)] integerValue];
 }
 
+- (void) flip {
+  [UIView transitionWithView:self
+                    duration:1
+                     options:UIViewAnimationOptionTransitionCrossDissolve
+                  animations:^{self.faceUp = !self.faceUp;}
+                  completion:^(BOOL finished) {}];
+}
+
 @end
 

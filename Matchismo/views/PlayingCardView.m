@@ -224,4 +224,12 @@
   }
 }
 
+- (void) flip {
+  UIViewAnimationOptions TransitionFlip = (self.faceUp)? UIViewAnimationOptionTransitionFlipFromLeft:UIViewAnimationOptionTransitionFlipFromRight;
+  [UIView transitionWithView:self
+                    duration:1
+                     options:TransitionFlip
+                  animations:^{self.faceUp = !self.faceUp;}
+                  completion:^(BOOL finished) {}];
+}
 @end

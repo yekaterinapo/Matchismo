@@ -16,6 +16,8 @@
 
 - (void)drawBackOfCard; // protected
 
+- (void) flip;
+
 @property (nonatomic) BOOL faceUp;
 
 @end

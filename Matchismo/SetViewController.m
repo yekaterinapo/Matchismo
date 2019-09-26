@@ -42,7 +42,7 @@
   
 }
 
-// TO DO: move to view
+// TO DO: move to view?
 - (void) FlipCardView: (CardView *) cardView {
   [UIView transitionWithView:cardView
                     duration:1

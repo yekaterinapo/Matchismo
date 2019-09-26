@@ -60,7 +60,8 @@
     NSUInteger index = [self.cardViewsOnTable indexOfObject:cardView];
     Card *card = [self.cardsOnTable objectAtIndex:index];
     if (card.chosen != cardView.faceUp) {
-      [self FlipCardView: cardView];
+//      [self FlipCardView: cardView];
+      [cardView flip];
     }
   }
   [self animateRearangeCards];
@@ -177,13 +178,13 @@
   [self updateUI];
 }
 
-- (void) FlipCardView: (CardView *) cardView { }
-
-- (IBAction)tapDeck:(UITapGestureRecognizer *)sender {
-//  [self.game dealThreeMoreCards];
-  [self addCardsToTable: [self.game dealThreeMoreCards]];
-  [self updateUI];
-}
+//- (void) FlipCardView: (CardView *) cardView { }
+//
+//- (IBAction)tapDeck:(UITapGestureRecognizer *)sender {
+////  [self.game dealThreeMoreCards];
+//  [self addCardsToTable: [self.game dealThreeMoreCards]];
+//  [self updateUI];
+//}
 
 - (void) addCardsToTable:(NSArray *) cardsToAdd {
   for (Card *card in cardsToAdd) {

@@ -40,13 +40,13 @@
   
 }
 
-- (void) FlipCardView: (CardView *) cardView {
-  UIViewAnimationOptions TransitionFlip = (cardView.faceUp)? UIViewAnimationOptionTransitionFlipFromLeft:UIViewAnimationOptionTransitionFlipFromRight;
-  [UIView transitionWithView:cardView
-                    duration:1
-                     options:TransitionFlip
-                  animations:^{cardView.faceUp = !cardView.faceUp;}
-                  completion:^(BOOL finished) {}];
-}
+//- (void) FlipCardView: (CardView *) cardView {
+//  UIViewAnimationOptions TransitionFlip = (cardView.faceUp)? UIViewAnimationOptionTransitionFlipFromLeft:UIViewAnimationOptionTransitionFlipFromRight;
+//  [UIView transitionWithView:cardView
+//                    duration:1
+//                     options:TransitionFlip
+//                  animations:^{cardView.faceUp = !cardView.faceUp;}
+//                  completion:^(BOOL finished) {}];
+//}
 
 @end
