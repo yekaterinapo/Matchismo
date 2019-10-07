@@ -6,11 +6,11 @@
 //  Copyright © 2019 Yekaterina Podiatchev. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "MatchingGameViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SetViewController : ViewController
+@interface SetViewController : MatchingGameViewController
 
 @end
 

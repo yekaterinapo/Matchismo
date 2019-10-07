@@ -7,24 +7,35 @@
 //
 
 #import "PlayingCardViewController.h"
-
-@interface PlayingCardViewController ()
-
-@end
+#import "PlayingCardView.h"
+#import "PlayingCard.h"
 
 @implementation PlayingCardViewController
 
 @synthesize game = _game;
 
-- (MatchingGame*) game {
+- (MatchingGame*)game {
   if (!_game) {
-    _game = [[PlayingCardMatchingGame alloc] initWithCardCount:[self.cardsButtons count] UsingDeck:[self createDeck]];
+    _game = [[PlayingCardMatchingGame alloc] initWithCardCount:CARDS_IN_GAME usingDeck:[self createDeck]];
   }
   return _game;
 }
 
-- (Deck*) createDeck {
+- (Deck*)createDeck {
   return [[PlayDeck alloc] init];
+}
+
+- (CardView*)viewForCard:(Card*)card withFrame:(CGRect)aRect {
+  PlayingCard *playingCard = (PlayingCard *)card;
+  PlayingCardView *playingCardView = [[PlayingCardView alloc] initWithFrame:aRect];
+  
+  playingCardView.suit = playingCard.suit;
+  playingCardView.rank = playingCard.rank;
+  playingCardView.faceUp = playingCard.chosen;
+  
+  UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapCard:)];
+  [playingCardView addGestureRecognizer:tapGestureRecognizer];
+  return (CardView *)playingCardView;  
 }
 
 @end

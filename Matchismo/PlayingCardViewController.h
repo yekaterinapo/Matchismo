@@ -6,13 +6,13 @@
 //  Copyright © 2019 Yekaterina Podiatchev. All rights reserved.
 //
 
-#import "ViewController.h"
-#import "model/games/PlayingCardMatchingGame.h"
-#import "model/decks/PlayDeck.h"
+#import "MatchingGameViewController.h"
+#import "PlayingCardMatchingGame.h"
+#import "PlayDeck.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PlayingCardViewController : ViewController
+@interface PlayingCardViewController : MatchingGameViewController
 
 @end
 

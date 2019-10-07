@@ -7,55 +7,37 @@
 //
 
 #import "SetViewController.h"
-#import "./model/cards/Card.h"
-#import "./model/decks/SetDeck.h"
-#import "./model/games/setGame.h"
-
-@interface SetViewController ()
-
-@end
+#import "Card.h"
+#import "SetDeck.h"
+#import "setGame.h"
+#import "SetCardView.h"
 
 @implementation SetViewController
 
 @synthesize game = _game;
 
-- (void) viewDidLoad {
-  [super viewDidLoad];
-  NSUInteger count = [self.game.cards count];
-  Deck* deck = [self createDeck];
-  [self.game resetGameWithCardCount: count UsingDeck: deck ];
-  [self updateUI];
-}
-
-- (MatchingGame*) game {
+- (MatchingGame*)game {
   if (!_game) {
-    _game = [[setGame alloc] initWithCardCount:[self.cardsButtons count] UsingDeck:[self createDeck]];
+    _game = [[setGame alloc] initWithCardCount:CARDS_IN_GAME usingDeck:[self createDeck]];
   }
   return _game;
 }
 
-- (Deck*) createDeck {
-  NSArray *ShapeOfattributes = @[@3,@3,@3,@3];
-  return [[SetDeck alloc] initWithAttributeCount:ShapeOfattributes];
+- (Deck*)createDeck {
+  return [[SetDeck alloc] init];
 }
 
-- (UIImage*) getImageForCard: (Card*) card {
-  return [UIImage imageNamed:@"cardfront"];
+- (CardView*)viewForCard:(Card*)card withFrame:(CGRect)aRect {
+  
+  SetCard *setCard = (SetCard *)card;
+  SetCardView *setCardView = [[SetCardView alloc] initWithFrame:aRect];
+  
+  setCardView.attributes = setCard.attributes;
+  setCardView.faceUp = setCard.chosen;
+  
+  UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapCard:)];
+  [setCardView addGestureRecognizer:tapGestureRecognizer];
+  return (CardView *)setCardView;
+  
 }
-
-- (NSAttributedString*) getTitleForCard:(Card*) card {
-  return card.contents;
-}
-
-- (void) updateUI {
-  [super updateUI];
-  // hilight selected buttons
-  for (UIButton* cardButton in self.cardsButtons) {
-    // get the index of the button
-    NSUInteger cardIndex = [self.cardsButtons indexOfObject:cardButton];
-    Card *card = [self.game getCardAtIndex:cardIndex];
-    [cardButton.layer setBorderWidth:(card.chosen)?3.0:0];
-  }
-}
-
 @end
